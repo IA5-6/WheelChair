@@ -15,7 +15,10 @@ namespace WheelChairHMI
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
+        JsonMessage message = new JsonMessage();
+        Communication communication = new Communication();
 
         private void btnAlarm_Click(object sender, EventArgs e)
         {
