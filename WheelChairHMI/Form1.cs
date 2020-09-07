@@ -7,20 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WheelChairHMI
 {
     public partial class Form1 : Form
     {
+        DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
+                "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
         public Form1()
         {
             InitializeComponent();
+            
+
         }
 
         private void btnAlarm_Click(object sender, EventArgs e)
         {
             btnAlarm.Text = ("⚠🛑 Alarms ⚠🛑");
             btnAlarm.BackColor = Color.Red;
+            
         }
+
+        
     }
 }
