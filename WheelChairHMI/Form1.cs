@@ -25,5 +25,10 @@ namespace WheelChairHMI
             btnAlarm.Text = ("⚠🛑 Alarms ⚠🛑");
             btnAlarm.BackColor = Color.Red;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            communication.sendObjViaSerial(message);
+        }
     }
 }
