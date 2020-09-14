@@ -23,7 +23,7 @@ namespace WheelChairHMI
             PortName = comport;
             BaudRate = baudrate;
             DataReceived += new SerialDataReceivedEventHandler(dataRecieved);
-            ReadTimeout = 2000;
+            ReadTimeout = 5000;
             dataReady = false;
             this.Open();
         }
@@ -38,7 +38,7 @@ namespace WheelChairHMI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"dataRecieved error");
                 dataReady = false;
             }
         }
@@ -66,6 +66,7 @@ namespace WheelChairHMI
             {
                 if (lastMsg != null)
                 {
+                    dataReady = false;
                     return lastMsg;
                 }
                 else

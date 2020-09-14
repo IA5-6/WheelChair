@@ -36,6 +36,7 @@ namespace WheelChairHMI
 
         private void button3_Click(object sender, EventArgs e)
         {
+            message.Speed = 89;
             communication.sendObjViaSerial(message);
         }
     }
