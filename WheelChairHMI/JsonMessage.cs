@@ -10,7 +10,7 @@ namespace WheelChairHMI
     {
         public JsonMessage()
         {
-            Drive = false;
+            Drive = true;
             Speed = 0;
             isForward = true;
         }

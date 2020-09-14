@@ -13,9 +13,9 @@ namespace WheelChairHMI
         SerialPort port;
         public Communication()
         {
-            port = new SerialPort("COM12", 9600);
+            port = new SerialPort("COM19", 115200,Parity.None,8,StopBits.One);
         }
-        private string ClassToJson(JsonMessage msg)
+        public string ClassToJson(JsonMessage msg)
         {
             string json = JsonConvert.SerializeObject(msg);
             return json;
@@ -24,7 +24,7 @@ namespace WheelChairHMI
         {
             string temp = ClassToJson(msg);
             port.Open();
-            port.WriteLine(temp);
+            port.Write(temp);
             port.Close();
         }
     }
