@@ -18,8 +18,6 @@ namespace WheelChairHMI
         public Form1()
         {
             InitializeComponent();
-            
-
         }
 
         private void btnAlarm_Click(object sender, EventArgs e)
@@ -31,4 +29,5 @@ namespace WheelChairHMI
 
         
     }
+    
 }
