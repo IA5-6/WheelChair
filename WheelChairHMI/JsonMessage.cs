@@ -14,7 +14,12 @@ namespace WheelChairHMI
             Speed = 0;
             isForward = true;
         }
-        
+        public JsonMessage(bool drive, int speed, bool isForward)
+        {
+            Drive = drive;
+            Speed = speed;
+            this.isForward = isForward;
+        }
         public bool isForward { get; set; }
 
         public int Speed { get; set; }

@@ -5,17 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace WheelChairHMI
 {
-    class Communication
+        /// <summary>
+        /// Handling sending, recieving and parsing of the Serial communication
+        /// to/from the arduino
+        /// </summary>
+    class Communication:SerialPort
     {
-        SerialPort port;
-        public Communication()
+        private string recievedData;
+        private bool dataReady;
+        private JsonMessage lastMsg;
+        public Communication(string comport, int baudrate)
         {
-            port = new SerialPort("COM19", 115200,Parity.None,8,StopBits.One);
+            PortName = comport;
+            BaudRate = baudrate;
+            DataReceived += new SerialDataReceivedEventHandler(dataRecieved);
+            ReadTimeout = 2000;
+            dataReady = false;
+            this.Open();
         }
-        public string ClassToJson(JsonMessage msg)
+
+        public void dataRecieved(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                recievedData = ReadLine();
+                lastMsg = JsonConvert.DeserializeObject<JsonMessage>(recievedData);
+                dataReady = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                dataReady = false;
+            }
+        }
+
+        private string ClassToJson(JsonMessage msg)
         {
             string json = JsonConvert.SerializeObject(msg);
             return json;
@@ -23,9 +51,35 @@ namespace WheelChairHMI
         public void sendObjViaSerial(JsonMessage msg)
         {
             string temp = ClassToJson(msg);
-            port.Open();
-            port.Write(temp);
-            port.Close();
+            if (!this.IsOpen)
+            {
+                this.Open();
+            }
+            this.WriteLine(temp);
+            //this.Close();
+        }
+        /// <summary>
+        /// Gets the latest message object of the latestMessage class
+        /// </summary>
+        public JsonMessage latestMessage {//Property to get the latest JsonMessage that is recieved
+            get
+            {
+                if (lastMsg != null)
+                {
+                    return lastMsg;
+                }
+                else
+                {
+                    throw new Exception("There is no latest message");
+                }
+            } 
+        }
+        /// <summary>
+        /// Gets the data ready flag
+        /// </summary>
+        public bool DataReady
+        {
+            get { return dataReady; }
         }
     }
 }
