@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace WheelChairHMI
 {
-    class JsonMessage
+    class JsonDataMessage
     {
-        public JsonMessage()
+        public JsonDataMessage()
         {
-            Drive = true;
+            Drive = false;
             Speed = 0;
-            isForward = true;
+            isForward = false;
         }
-        public JsonMessage(bool drive, int speed, bool isForward)
-        {
-            Drive = drive;
-            Speed = speed;
-            this.isForward = isForward;
-        }
+        
         public bool isForward { get; set; }
 
         public int Speed { get; set; }

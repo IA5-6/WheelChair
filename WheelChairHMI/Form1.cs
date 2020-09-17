@@ -13,31 +13,26 @@ namespace WheelChairHMI
 {
     public partial class Form1 : Form
     {
-       
         Communication communication;
+        JsonDataMessage message;
         public Form1()
         {
             InitializeComponent();
-            this.KeyPreview = true;
             communication = new Communication("COM3",115200);
+            communication.dataIsReady += new EventHandler(dealWithDataReady);
+            message = new JsonDataMessage();
         }
-        JsonMessage message = new JsonMessage();
+
+        private void dealWithDataReady(object sender, EventArgs e)
+        {
+            ///Here all the logging and alarm checking can be done
+            JsonDataMessage toBeChecked = communication.latestMessage;
+        }
 
         private void btnAlarm_Click(object sender, EventArgs e)
         {
             btnAlarm.Text = ("⚠🛑 Alarms ⚠🛑");
             btnAlarm.BackColor = Color.Red;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            message.Speed = 89;
-            communication.sendObjViaSerial(message);
         }
     }
 }

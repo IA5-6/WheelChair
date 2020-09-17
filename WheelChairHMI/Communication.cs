@@ -15,9 +15,20 @@ namespace WheelChairHMI
         /// </summary>
     class Communication:SerialPort
     {
+        #region Fields 
         private string recievedData;
         private bool dataReady;
-        private JsonMessage lastMsg;
+        private JsonDataMessage lastMsg;
+        /// <summary>
+        /// Event handler that triggers when a serial port message is recieved
+        /// </summary>
+        public EventHandler dataIsReady;
+        #endregion
+        /// <summary>
+        /// Constructor for initializing the communication Class
+        /// </summary>
+        /// <param name="comport">String specifying the comport to the arduino. ex. "COM1"</param>
+        /// <param name="baudrate">The baudrate of the comport</param>
         public Communication(string comport, int baudrate)
         {
             PortName = comport;
@@ -27,14 +38,15 @@ namespace WheelChairHMI
             dataReady = false;
             this.Open();
         }
-
-        public void dataRecieved(object sender, SerialDataReceivedEventArgs e)
+        #region Event methods
+        private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
                 recievedData = ReadLine();
-                lastMsg = JsonConvert.DeserializeObject<JsonMessage>(recievedData);
+                lastMsg = JsonConvert.DeserializeObject<JsonDataMessage>(recievedData);
                 dataReady = true;
+                dataIsReady(this, new EventArgs());
             }
             catch (Exception ex)
             {
@@ -42,13 +54,19 @@ namespace WheelChairHMI
                 dataReady = false;
             }
         }
-
-        private string ClassToJson(JsonMessage msg)
+        #endregion
+        #region Methods
+        private string ClassToJson(JsonCommandMessage msg)
         {
             string json = JsonConvert.SerializeObject(msg);
             return json;
         }
-        public void sendObjViaSerial(JsonMessage msg)
+
+        /// <summary>
+        /// Used for sending an object of class JsonCommandMessage over serial to the chosen COM port 
+        /// </summary>
+        /// <param name="msg">Object of the JsonCommandMessage format</param>
+        public void sendObjViaSerial(JsonCommandMessage msg)
         {
             string temp = ClassToJson(msg);
             if (!this.IsOpen)
@@ -58,10 +76,12 @@ namespace WheelChairHMI
             this.WriteLine(temp);
             //this.Close();
         }
+        #endregion
+        #region Properties
         /// <summary>
         /// Gets the latest message object of the latestMessage class
         /// </summary>
-        public JsonMessage latestMessage {//Property to get the latest JsonMessage that is recieved
+        public JsonDataMessage latestMessage {//Property to get the latest JsonMessage that is recieved
             get
             {
                 if (lastMsg != null)
@@ -82,5 +102,6 @@ namespace WheelChairHMI
         {
             get { return dataReady; }
         }
+        #endregion
     }
 }
