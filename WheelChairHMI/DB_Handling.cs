@@ -88,18 +88,20 @@ namespace WheelChairHMI
         #endregion
 
         #region Public methods
-        //Method for logging distance
+        //Method for logging data
         /// <summary>
-        /// Logs the distance driven to database.
+        /// Logs different types of data to the database.
+        /// Currentlys there are three types of data.
+        /// 1: Remaining batterytime,2: Total distance travled and 3: Top speed achived.
         /// </summary>
-        /// <param name="distance">Distance is in meters</param>
-        public void LogDistance(double distance)
+        /// <param name="dataId">The id that represent diffrent types of data.</param>
+        /// <param name="dataval">The value of data to be stored.</param>
+        public void LogData(double dataval, int dataId)
         {
-            string Query,data;
-            data = "Distance";
+            string Query;
             Timestamp = DateTime.Now;
-            Query = String.Concat(@"INSERT INTO Timestamp VALUES ('", Timestamp, "','", data, "')"
-                + "INSERT INTO Data Values('", Timestamp, "','", 2, "','",distance,"')");
+            Query = String.Concat(@"INSERT INTO Timestamp VALUES ('", Timestamp, "')"
+                + "INSERT INTO Data Values('", Timestamp, "','", dataId, "','",dataval,"')");
             CnnSendCommand(Query);
         }
         //Method for clearing a table
@@ -116,6 +118,25 @@ namespace WheelChairHMI
                 delete from Timestamp
                 alter table Data check constraint all
                 alter table Data check constraint all");
+            CnnSendCommand(Query);
+        }
+        //Method for logging alarms.
+        /// <summary>
+        /// Method for logging alarms to database.
+        /// Currentlyg there are seven types of alarms.
+        /// 1: Emergency stop activated.
+        /// 2: High speed.
+        /// 3-6: Different types of zones activated, starts with zone 1.
+        /// 7: Low batter.
+        /// </summary>
+        /// <param name="AlarmId">Id to determine which alarm is to be logged.</param>
+        /// <param name="Alarmvalue"></param>
+        public void LogAlarms(int AlarmId, double Alarmvalue)
+        {
+            string Query;
+            Timestamp = DateTime.Now;
+            Query = String.Concat(@"insert into Timestamp values ('",Timestamp,"')" +
+                "insert into Alarms values ('", Timestamp ,"','",AlarmId,"','",Alarmvalue,"')");
             CnnSendCommand(Query);
         }
         #endregion

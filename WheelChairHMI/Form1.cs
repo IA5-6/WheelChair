@@ -22,8 +22,7 @@ namespace WheelChairHMI
 
         private void btnAlarm_Click(object sender, EventArgs e)
         {
-            btnAlarm.Text = ("⚠🛑 Alarms ⚠🛑");
-            btnAlarm.BackColor = Color.Red;
+            
             
         }
 
