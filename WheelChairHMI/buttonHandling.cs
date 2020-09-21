@@ -7,27 +7,28 @@ using System.Windows.Forms;
 
 namespace WheelChairHMI
 {
-    class buttonHandling
+    class ButtonHandling
     {
-        private Communication Com;
-        private JsonCommandMessage cmd;
-        public buttonHandling(Communication com)
+        private readonly Communication Com;
+        private readonly JsonCommandMessage cmd;
+
+        public ButtonHandling(Communication com)
         {
             Com = com;
             cmd = new JsonCommandMessage();
         }
-        public buttonHandling()
+        public ButtonHandling()
         {
 
         }
 
-        public void processBtnClick(Keys key)
+        public void ProcessBtnClick(Keys key)
         {
             switch (key)
             {
                 case Keys.Up:
                     cmd.Prop1 = 1;
-                    Com.sendObjViaSerial(cmd);
+                    Com.SendObjViaSerial(cmd);
                     break;
                 case Keys.Left:
                     MessageBox.Show("Key left");
