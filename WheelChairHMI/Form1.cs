@@ -15,7 +15,8 @@ namespace WheelChairHMI
     public partial class Form1 : Form
     {
 
-        /*DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
+
+       /* DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
                 "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");*/
         Communication communication;
         JsonDataMessage message;
@@ -24,8 +25,8 @@ namespace WheelChairHMI
         {
             InitializeComponent();
             //dataGridView1.DataSource = dB.ViewAlarmHistory();
-            //communication = new Communication("COM19",115200);
-            //communication.dataIsReady += new EventHandler(dealWithDataReady);
+            communication = new Communication(cboComPort,btnSerialConnect);
+            communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
             btnHandling = new buttonHandling(/*communication*/);
             KeyPreview = true;//Needs to be true to detect button presses

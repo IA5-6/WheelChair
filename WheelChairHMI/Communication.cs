@@ -19,6 +19,7 @@ namespace WheelChairHMI
         private string recievedData;
         private bool dataReady;
         private JsonDataMessage lastMsg;
+        private string[] ports = GetPortNames();
         /// <summary>
         /// Event handler that triggers when a serial port message is recieved
         /// </summary>
@@ -44,8 +45,42 @@ namespace WheelChairHMI
             {
                 MessageBox.Show(e.Message, "Error opening the port");
             }
+
+        }
+        /// <summary>
+        /// Constructor for working with a cbo filled with the available serial ports and a button for connecting.
+        /// </summary>
+        /// <param name="cbo">Combobox for choosing Comport</param>
+        /// <param name="button">Button for connecting and disconnecting</param>
+        public Communication(ComboBox cbo, Button button)
+        {
+            button.Click += new EventHandler(btnConnectClick);
+            cbo.Items.AddRange(ports);
+            cbo.SelectedIndex=0;
         }
         #region Event methods
+        private void btnConnectClick(object sender, EventArgs e) 
+        {
+            try
+            {
+                Button btn = sender as Button;
+                if (IsOpen)
+                {
+                    Close();
+                    btn.Text = "Connect";
+                }
+                else
+                {
+                    Open();
+                    btn.Text = "Disconnect";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error When Connecting");
+            }
+            
+        }
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -63,6 +98,10 @@ namespace WheelChairHMI
         }
         #endregion
         #region Methods
+        public void ConnectPort(string comport, int baudrate)
+        {
+
+        }
         private string ClassToJson(JsonCommandMessage msg)
         {
             string json = JsonConvert.SerializeObject(msg);
