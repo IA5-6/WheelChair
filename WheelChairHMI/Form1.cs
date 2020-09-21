@@ -26,12 +26,44 @@ namespace WheelChairHMI
             communication = new Communication("COM3",115200);
             communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
+            this.KeyPreview = true;
+
         }
 
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
+        }
+
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            string key = "";
+            switch (e.KeyData)
+            {
+                case Keys.Up:
+                    key = "Up Arrow";
+                    break;
+                case Keys.Down:
+                    key = "Down Arrow";
+                    break;
+                case Keys.Left:
+                    key = "Left arrow";
+                    break;
+                case Keys.Right:
+                    key = "Right arrow";
+                    break;
+                default:
+                    key = "Den knappen støtter jeg ikke";
+                    break;
+            }
+            MessageBox.Show(key);
+            
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show("Hoe");
         }
     }
     
