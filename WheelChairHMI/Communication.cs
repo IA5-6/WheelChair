@@ -45,6 +45,7 @@ namespace WheelChairHMI
             {
                 MessageBox.Show(e.Message, "Error opening the port");
             }
+
         }
         /// <summary>
         /// Constructor for working with a cbo filled with the available serial ports and a button for connecting.

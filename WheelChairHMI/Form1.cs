@@ -15,10 +15,12 @@ namespace WheelChairHMI
     public partial class Form1 : Form
     {
 
+
        /* DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
                 "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");*/
         Communication communication;
         JsonDataMessage message;
+        buttonHandling btnHandling;
         public Form1()
         {
             InitializeComponent();
@@ -26,12 +28,22 @@ namespace WheelChairHMI
             communication = new Communication(cboComPort,btnSerialConnect);
             communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
+            btnHandling = new buttonHandling(/*communication*/);
+            KeyPreview = true;//Needs to be true to detect button presses
         }
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            btnHandling.processBtnClick(keyData);
+            return true;
+        }
+        
 
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
+           
         }
     }
     
