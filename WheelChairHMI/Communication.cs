@@ -36,7 +36,14 @@ namespace WheelChairHMI
             DataReceived += new SerialDataReceivedEventHandler(dataRecieved);
             ReadTimeout = 5000;
             dataReady = false;
-            this.Open();
+            try
+            {
+                this.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error opening the port");
+            }
         }
         #region Event methods
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
