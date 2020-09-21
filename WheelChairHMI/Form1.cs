@@ -15,15 +15,15 @@ namespace WheelChairHMI
     public partial class Form1 : Form
     {
 
-        DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
-                "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
+       /* DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
+                "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");*/
         Communication communication;
         JsonDataMessage message;
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.DataSource = dB.ViewAlarmHistory();
-            communication = new Communication("COM3",115200);
+            //dataGridView1.DataSource = dB.ViewAlarmHistory();
+            communication = new Communication(cboComPort,btnSerialConnect);
             communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
         }

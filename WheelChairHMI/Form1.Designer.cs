@@ -63,11 +63,15 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
+            this.btnSerialConnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -210,6 +214,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnSerialConnect);
+            this.tabPage2.Controls.Add(this.cboComPort);
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -245,6 +252,32 @@
             this.dataGridView1.Size = new System.Drawing.Size(1062, 631);
             this.dataGridView1.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Serial Port---------";
+            // 
+            // cboComPort
+            // 
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(22, 32);
+            this.cboComPort.Name = "cboComPort";
+            this.cboComPort.Size = new System.Drawing.Size(121, 21);
+            this.cboComPort.TabIndex = 1;
+            // 
+            // btnSerialConnect
+            // 
+            this.btnSerialConnect.Location = new System.Drawing.Point(22, 59);
+            this.btnSerialConnect.Name = "btnSerialConnect";
+            this.btnSerialConnect.Size = new System.Drawing.Size(121, 23);
+            this.btnSerialConnect.TabIndex = 2;
+            this.btnSerialConnect.Text = "Connect";
+            this.btnSerialConnect.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,6 +294,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -281,6 +316,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnSerialConnect;
+        private System.Windows.Forms.ComboBox cboComPort;
+        private System.Windows.Forms.Label label4;
     }
 }
 
