@@ -5,14 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
+using System.Data;
 
 namespace WheelChairHMI
 {
-    /*
-     The main database handling class for this project.
-         */
-
+    //The main database handling class for this project.
     /// <summary>
     /// Contains a variaty of methods for communicating with a SQL database.
     /// 
@@ -23,6 +20,7 @@ namespace WheelChairHMI
 
         public string DBConfig { get; set; }
         public DateTime Timestamp { get; set; }
+        //public List<string> AlarmHistory { get; set; } = new List<string>();
         #endregion
 
         #region Constructors
@@ -127,7 +125,7 @@ namespace WheelChairHMI
         /// 1: Emergency stop activated.
         /// 2: High speed.
         /// 3-6: Different types of zones activated, starts with zone 1.
-        /// 7: Low batter.
+        /// 7: Low battery.
         /// </summary>
         /// <param name="AlarmId">Id to determine which alarm is to be logged.</param>
         /// <param name="Alarmvalue"></param>
@@ -138,6 +136,77 @@ namespace WheelChairHMI
             Query = String.Concat(@"insert into Timestamp values ('",Timestamp,"')" +
                 "insert into Alarms values ('", Timestamp ,"','",AlarmId,"','",Alarmvalue,"')");
             CnnSendCommand(Query);
+        }
+        //Method for obtaining data table of alarms.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ViewAlarmHistory()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                string procedure;
+                procedure = "AlarmHistoryView";
+                SqlConnection con = DBcon();
+                SqlCommand cmd = new SqlCommand(procedure, con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                con.Open();
+                dt.Load(cmd.ExecuteReader());
+                con.Close();
+
+            }
+            catch (Exception exe)
+            {
+
+                MessageBox.Show(exe.Message);
+            }
+            return dt;
+        }
+        //Method that returns a list of all contents in a table. 
+        /// <summary>
+        /// Method that returs a list of all content in a table. 
+        /// Each row is one element in the list, each column is comma separated.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        public List<string> GetLists(string table)
+        {
+            List<string> vs = new List<string>();
+            List<string> temp = new List<string>();
+            string q,s;
+            q = String.Concat(@"select * from ",table);
+            try
+            {
+                SqlCommand cmd = new SqlCommand(q, DBcon())
+                {
+                    CommandType = CommandType.Text
+                };
+                DBcon().Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    for (int i = 0; i < dr.ItemArray.Length; i++)
+                    {
+                        temp.Add(dr[i].ToString());
+                    }
+                    s = string.Join(",", temp);
+                    vs.Add(s);
+                    temp.Clear();
+                    s = "";
+                }
+                DBcon().Close();
+            }
+            catch (Exception exe)
+            {
+                MessageBox.Show(exe.Message);
+            }
+            return vs;
         }
         #endregion
 

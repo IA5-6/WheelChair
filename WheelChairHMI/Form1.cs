@@ -18,13 +18,10 @@ namespace WheelChairHMI
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.DataSource = dB.ViewAlarmHistory();
         }
 
-        private void btnAlarm_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
+        
 
         
     }
