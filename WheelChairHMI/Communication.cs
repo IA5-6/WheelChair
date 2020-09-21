@@ -74,7 +74,6 @@ namespace WheelChairHMI
                 this.Open();
             }
             this.WriteLine(temp);
-            //this.Close();
         }
         #endregion
         #region Properties

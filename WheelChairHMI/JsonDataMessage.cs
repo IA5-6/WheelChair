@@ -10,15 +10,21 @@ namespace WheelChairHMI
     {
         public JsonDataMessage()
         {
-            Drive = false;//YOur mom
-            Speed = 0;
-            isForward = false;
+            
         }
         
-        public bool isForward { get; set; }
+        public bool EmergencyStop { get; set; }
 
         public int Speed { get; set; }
 
-        public bool Drive { get; set; }
+        public bool Zone1Tripped { get; set; }
+
+        public bool Zone2Tripped { get; set; }
+
+        public bool Zone3Tripped { get; set; }
+
+        public bool Zone4Tripped { get; set; }
+
+        public int BatteryLevel { get; set; }
     }
 }

@@ -26,13 +26,9 @@ namespace WheelChairHMI
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
-            JsonDataMessage toBeChecked = communication.latestMessage;//Your mom
-        }
+            JsonDataMessage toBeChecked = communication.latestMessage;
+            
 
-        private void btnAlarm_Click(object sender, EventArgs e)
-        {
-            btnAlarm.Text = ("⚠🛑 Alarms ⚠🛑");
-            btnAlarm.BackColor = Color.Red;
         }
     }
 }
