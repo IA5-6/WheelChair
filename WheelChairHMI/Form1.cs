@@ -26,7 +26,7 @@ namespace WheelChairHMI
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
-            JsonDataMessage toBeChecked = communication.latestMessage;
+            JsonDataMessage toBeChecked = communication.latestMessage;//Your mom
         }
 
         private void btnAlarm_Click(object sender, EventArgs e)
