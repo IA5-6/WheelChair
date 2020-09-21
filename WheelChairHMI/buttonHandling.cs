@@ -10,10 +10,11 @@ namespace WheelChairHMI
     class buttonHandling
     {
         private Communication Com;
-        
+        private JsonCommandMessage cmd;
         public buttonHandling(Communication com)
         {
             Com = com;
+            cmd = new JsonCommandMessage();
         }
         public buttonHandling()
         {
@@ -25,7 +26,8 @@ namespace WheelChairHMI
             switch (key)
             {
                 case Keys.Up:
-                    MessageBox.Show("Key up");
+                    cmd.Prop1 = 1;
+                    Com.sendObjViaSerial(cmd);
                     break;
                 case Keys.Left:
                     MessageBox.Show("Key left");

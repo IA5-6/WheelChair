@@ -24,10 +24,10 @@ namespace WheelChairHMI
         {
             InitializeComponent();
             //dataGridView1.DataSource = dB.ViewAlarmHistory();
-            //communication = new Communication("COM3",115200);
+            //communication = new Communication("COM19",115200);
             //communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
-            btnHandling = new buttonHandling();
+            btnHandling = new buttonHandling(/*communication*/);
             KeyPreview = true;//Needs to be true to detect button presses
         }
         
@@ -42,6 +42,7 @@ namespace WheelChairHMI
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
+           
         }
     }
     
