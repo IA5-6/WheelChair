@@ -5,28 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace WheelChairHMI
 {
-    class Alarm : Form1
+    class Alarm
     {
-        List<bool> alarmCheck = new  List<bool>();
-        List<string> alarm = new List<string>();
+        bool[] alarmCheck;
+        List<string> alarmCollection;
+
+
+        List<string> alarmListValue;
+        List<string> alarmListName;
        
-       
-        List<string> alarmListValue = new List<string>(); //Should be 
-        List<string> alarmListName = new List<string>(); //Should be 
         public Alarm()//Alarm constructor
         {
-           
-            AlarmStample();
-      
+            alarmCheck= new bool[7];
+            alarmCollection= new List<string>();
+            alarmListValue = new List<string>(); //Should be 
+            alarmListName = new List<string>(); //Should be 
         }
+
         private void alarmBoolList()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < alarmCheck.Length; i++)
             {
-                alarmCheck.Add(false);
+                alarmCheck[i]=false;
             }
           /*  bool emergencyStop = false;
             bool speed = false;
@@ -37,63 +41,63 @@ namespace WheelChairHMI
             bool lowBattery = false;*/
         }
 
-        private void AlarmStample()
-        {
-            
-            DateTime alarmTime = DateTime.Now;
-            int iNumber = 0;
-            for (int i = 0; i < alarmCheck.Count; i++)
-            {
-                if (alarmCheck[iNumber]==true)
-                {
-                    alarm.Add(alarmTime.ToString());
-                    alarm.Add(alarmListName[iNumber]);
-                    alarm.Add(alarmListValue[iNumber]);
-                }
-                iNumber ++;
-            }
-            
-           
-        }
 
-        private void AlarmCheck (JsonDataMessage arduinoValues)//Must chech how to inport json !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public void AlarmCheck (JsonDataMessage arduinoValues)//Must chech how to inport json !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
-            foreach (Propertyinfo prop in Arduinovalues)
+            foreach (PropertyInfo prop in arduinoValues.GetType().GetProperties())
             {
-                alarmListValue.Add(prop.GetValue().ToString());
+                alarmListValue.Add(prop.GetValue(arduinoValues).ToString());
                 alarmListName.Add(prop.Name);
             }
             if (alarmListValue[0] != "False")
             {
-                alarmBoolList[0]=(true);
+                alarmCheck[0]=true;
             }
             else if(Convert.ToInt32(alarmListValue[1])>10)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Must change value to more spesific
             {
-                speed = true;
+                alarmCheck[1] = (true);
             }
             else if(alarmListValue[2]!= "False")
             {
-                zoneOneTripped = true;
+                alarmCheck[2] = (true);
             }
             else if (alarmListValue[3] != "False")
             {
-                zoneTwoTripped = true;
+                alarmCheck[3] = (true);
             }
             else if (alarmListValue[4] != "False")
             {
-                zoneThreeTripped = true;
+                alarmCheck[4] = (true);
             }
             else if (alarmListValue[5] != "False")
             {
-                zoneFourTripped = true;
+                alarmCheck[5] = (true);
             }
             else if (Convert.ToInt32(alarmListValue[6] )< 50)//!!!!!!!!!!!!!!!!!!!!!!!!Unsure on this parameter of low battery.
             {
-                lowBattery = true;
+                alarmCheck[6] = (true);
             }
-
+            AlarmStample();
         }
-        
+        private void AlarmStample() //Alarmclass that stample the alarm and add the values to a new list 
+        {
+            
+            DateTime alarmTime = DateTime.Now;
+            
+            for (int i = 0; i < alarmCheck.Length; i++)
+            {
+                if (alarmCheck[i]==true)
+                {
+                    alarmCollection.Add(alarmTime.ToString());
+                    alarmCollection.Add(alarmListName[i]);
+                    alarmCollection.Add(alarmListValue[i]);
+                }
+               
+            }
+            
+           
+        }
+        public List<string> AlarmCollection { get { return alarmCollection; } }
 
     }
 }
