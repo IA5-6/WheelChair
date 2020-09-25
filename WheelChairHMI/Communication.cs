@@ -20,6 +20,7 @@ namespace WheelChairHMI
         private bool dataReady;
         private JsonDataMessage lastMsg;
         private string[] ports;
+
         /// <summary>
         /// Event handler that triggers when a serial port message is recieved
         /// </summary>
@@ -80,6 +81,7 @@ namespace WheelChairHMI
             }
             
         }
+
         private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -97,6 +99,7 @@ namespace WheelChairHMI
         }
         #endregion
         #region Methods
+
         internal void populateCbo(ComboBox box)
         {
             ports = GetPortNames();
