@@ -26,6 +26,14 @@ namespace WheelChairHMI
             communication = new Communication("COM3",115200);
             communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
+            btnHandling = new buttonHandling(communication);
+            KeyPreview = true;//Needs to be true to detect button presses
+        }
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            btnHandling.processBtnClick(keyData);
+            return true;
         }
 
         private void dealWithDataReady(object sender, EventArgs e)
