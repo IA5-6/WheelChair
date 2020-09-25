@@ -19,8 +19,9 @@ namespace WheelChairHMI
         private string recievedData;
         private bool dataReady;
         private JsonDataMessage lastMsg;
-        private string[] ports;
-
+        private readonly string[] ports = GetPortNames();
+        private readonly ComboBox Cbo;
+        private readonly Button ConnectButton;
         /// <summary>
         /// Event handler that triggers when a serial port message is recieved
         /// </summary>
@@ -35,7 +36,7 @@ namespace WheelChairHMI
         {
             PortName = comport;
             BaudRate = baudrate;
-            DataReceived += new SerialDataReceivedEventHandler(dataRecieved);
+            DataReceived += new SerialDataReceivedEventHandler(DataRecieved);
             ReadTimeout = 5000;
             dataReady = false;
             try
@@ -53,26 +54,31 @@ namespace WheelChairHMI
         /// </summary>
         /// <param name="cbo">Combobox for choosing Comport</param>
         /// <param name="button">Button for connecting and disconnecting</param>
-        public Communication(ComboBox cbo, Button button)
+        public Communication(ComboBox cbo, Button button,int baudRate)
         {
-            button.Click += new EventHandler(btnConnectClick);
-            
+            BaudRate = baudRate;
+            ReadTimeout = 5000;
+            dataReady = false;
+            ConnectButton = button;//Assigns the connect button to the field
+            DataReceived += new SerialDataReceivedEventHandler(DataRecieved);//Event handler for handling serial data recieved
+            ConnectButton.Click += new EventHandler(BtnConnectClick);//Click event for the connect button
+            Cbo = cbo;
+            Cbo.Items.AddRange(ports);
+            Cbo.SelectedIndex=0;
         }
         #region Event methods
-        internal void btnConnectClick(object sender, EventArgs e) 
+        private void BtnConnectClick(object sender, EventArgs e) 
         {
             try
             {
-                Button btn = sender as Button;
+                //Button btn = sender as Button;
                 if (IsOpen)
                 {
-                    Close();
-                    btn.Text = "Connect";
+                    DisconnectPort();
                 }
                 else
                 {
-                    Open();
-                    btn.Text = "Disconnect";
+                    ConnectPort();
                 }
             }
             catch (Exception ex)
@@ -81,8 +87,7 @@ namespace WheelChairHMI
             }
             
         }
-
-        private void dataRecieved(object sender, SerialDataReceivedEventArgs e)
+        private void DataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -99,6 +104,17 @@ namespace WheelChairHMI
         }
         #endregion
         #region Methods
+        public void ConnectPort()
+        {
+            PortName = Cbo.SelectedItem.ToString();
+            Open();
+            ConnectButton.Text = "Disconnect";
+        }
+        public void DisconnectPort()
+        {
+            Close();
+            ConnectButton.Text = "Connect";
+        }
 
         internal void populateCbo(ComboBox box)
         {
@@ -106,10 +122,7 @@ namespace WheelChairHMI
             box.Items.AddRange(ports);
             box.SelectedIndex = 0;
         }
-        public void ConnectPort(string comport, int baudrate)
-        {
-
-        }
+        
         private string ClassToJson(JsonCommandMessage msg)
         {
             string json = JsonConvert.SerializeObject(msg);
@@ -120,7 +133,7 @@ namespace WheelChairHMI
         /// Used for sending an object of class JsonCommandMessage over serial to the chosen COM port 
         /// </summary>
         /// <param name="msg">Object of the JsonCommandMessage format</param>
-        public void sendObjViaSerial(JsonCommandMessage msg)
+        public void SendObjViaSerial(JsonCommandMessage msg)
         {
             string temp = ClassToJson(msg);
             if (!this.IsOpen)
@@ -135,7 +148,7 @@ namespace WheelChairHMI
         /// <summary>
         /// Gets the latest message object of the latestMessage class
         /// </summary>
-        public JsonDataMessage latestMessage {//Property to get the latest JsonMessage that is recieved
+        public JsonDataMessage LatestMessage {//Property to get the latest JsonMessage that is recieved
             get
             {
                 if (lastMsg != null)
