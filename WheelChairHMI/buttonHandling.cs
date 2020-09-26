@@ -10,12 +10,12 @@ namespace WheelChairHMI
     class ButtonHandling
     {
         private readonly Communication Com;
-        private readonly JsonCommandMessage cmd;
+        
 
         public ButtonHandling(Communication com)
         {
             Com = com;
-            cmd = new JsonCommandMessage();
+           
         }
         public ButtonHandling()
         {
@@ -27,21 +27,21 @@ namespace WheelChairHMI
             switch (key)
             {
                 case Keys.Up:
-                    cmd.Prop1 = 1;
-                    Com.SendObjViaSerial(cmd);
+                    Com.DriveForward();
                     break;
                 case Keys.Left:
-                    MessageBox.Show("Key left");
+                    Com.TurnLeft();
                     break;
                 case Keys.Right:
-                    MessageBox.Show("Key right");
+                    Com.TurnRight();
                     break;
                 case Keys.Down:
-                    MessageBox.Show("Key down");
+                    Com.DriveBack();
                     break;
                 default:
                     break;
             }
+            Com.SendObjViaSerial();
         }
     }
 }

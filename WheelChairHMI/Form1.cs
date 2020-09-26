@@ -41,6 +41,8 @@ namespace WheelChairHMI
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.LatestMessage;
+            MessageBox.Show(toBeChecked.Speed.ToString());
+            
             
         }
     }

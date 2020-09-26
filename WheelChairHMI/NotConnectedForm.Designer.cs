@@ -82,6 +82,7 @@
             this.Controls.Add(this.label1);
             this.Name = "notConnectedForm";
             this.Text = "NOT CONNECTED ERROR";
+            this.Shown += new System.EventHandler(this.notConnectedForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

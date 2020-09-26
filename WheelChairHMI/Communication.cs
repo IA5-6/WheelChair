@@ -16,19 +16,25 @@ namespace WheelChairHMI
     class Communication:SerialPort
     {
         #region Fields 
+        private int turningSpeed = 5;
         private string recievedData;
         private bool dataReady;
         private JsonDataMessage lastMsg;
-        private readonly string[] ports = GetPortNames();
-        private readonly ComboBox Cbo;
-        private readonly Button ConnectButton;
+        private JsonCommandMessage cmdMsg;
+        private string[] ports = GetPortNames();
+        internal  ComboBox Cbo;
+        private readonly ComboBox cboParent;//For putting back in Cbo when returning from NotConnectedForm
+        internal  Button ConnectButton;
+        private notConnectedForm form;//Form for choosing comport if not chosen
+        private int Speed = 0;
         /// <summary>
         /// Event handler that triggers when a serial port message is recieved
         /// </summary>
         public EventHandler dataIsReady;
         #endregion
+        #region Constructors
         /// <summary>
-        /// Constructor for initializing the communication Class
+        /// Legacy constructor for initializing the communication Class
         /// </summary>
         /// <param name="comport">String specifying the comport to the arduino. ex. "COM1"</param>
         /// <param name="baudrate">The baudrate of the comport</param>
@@ -54,20 +60,35 @@ namespace WheelChairHMI
         /// </summary>
         /// <param name="cbo">Combobox for choosing Comport</param>
         /// <param name="button">Button for connecting and disconnecting</param>
+        /// <param name="baudRate">Integer denoting the baudrate of serial comms</param>
         public Communication(ComboBox cbo, Button button,int baudRate)
         {
             BaudRate = baudRate;
-            ReadTimeout = 5000;
+            ReadTimeout = 2000;
+            WriteTimeout = 2000;
             dataReady = false;
             ConnectButton = button;//Assigns the connect button to the field
             DataReceived += new SerialDataReceivedEventHandler(DataRecieved);//Event handler for handling serial data recieved
             ConnectButton.Click += new EventHandler(BtnConnectClick);//Click event for the connect button
+            cboParent = cbo;
             Cbo = cbo;
             Cbo.Items.AddRange(ports);
             Cbo.SelectedIndex=0;
+            form = new notConnectedForm(this);
+            form.FormClosed += new FormClosedEventHandler(closedForm);
+            cmdMsg = new JsonCommandMessage();
         }
+        #endregion
         #region Event methods
-        private void BtnConnectClick(object sender, EventArgs e) 
+        
+
+
+        private void closedForm(object sender, FormClosedEventArgs e)
+        {
+            Cbo = cboParent;
+            
+        }
+        internal void BtnConnectClick(object sender, EventArgs e) 
         {
             try
             {
@@ -93,6 +114,7 @@ namespace WheelChairHMI
             {
                 recievedData = ReadLine();
                 lastMsg = JsonConvert.DeserializeObject<JsonDataMessage>(recievedData);
+                Speed = lastMsg.Speed;
                 dataReady = true;
                 dataIsReady(this, new EventArgs());
             }
@@ -104,23 +126,68 @@ namespace WheelChairHMI
         }
         #endregion
         #region Methods
+        #region DriveMethods
+        public void DriveForward()
+        {
+            if (Speed < 0)
+            {
+                cmdMsg.Drive = false;
+                cmdMsg.Speed = 0;
+            }
+            else if(Speed>=0)
+            {
+                cmdMsg.Drive = true;
+                cmdMsg.Speed += 5;
+            }
+        }
+        public void DriveBack()
+        {
+            if (Speed >0)
+            {
+                cmdMsg.Drive = false;
+                cmdMsg.Speed = 0;
+            }
+            else if(Speed<=0)
+            {
+                cmdMsg.Drive = true;
+                cmdMsg.Speed -= 5;
+            }
+        }
+        public void TurnLeft()
+        {
+            cmdMsg.Drive = true;
+            cmdMsg.Speed = turningSpeed;
+            cmdMsg.Left = true;
+            cmdMsg.Right = false;
+        }
+        public void TurnRight()
+        {
+            cmdMsg.Drive = true;
+            cmdMsg.Speed = turningSpeed;
+            cmdMsg.Right = true;
+            cmdMsg.Left = false;
+        }
+        #endregion
         public void ConnectPort()
         {
+            
             PortName = Cbo.SelectedItem.ToString();
             Open();
             ConnectButton.Text = "Disconnect";
         }
-        public void DisconnectPort()
+        internal void DisconnectPort()
         {
+            cmdMsg.Drive = false;
+            cmdMsg.Speed = 0;
             Close();
             ConnectButton.Text = "Connect";
         }
 
-        internal void populateCbo(ComboBox box)
+        internal void populateCbo()
         {
             ports = GetPortNames();
-            box.Items.AddRange(ports);
-            box.SelectedIndex = 0;
+            Cbo.Items.AddRange(ports);
+            Cbo.SelectedIndex = 0;
         }
         
         private string ClassToJson(JsonCommandMessage msg)
@@ -138,10 +205,32 @@ namespace WheelChairHMI
             string temp = ClassToJson(msg);
             if (!this.IsOpen)
             {
-                notConnectedForm form = new notConnectedForm(this);
                 form.ShowDialog();
             }
-            this.WriteLine(temp);
+            try
+            {
+                this.WriteLine(temp);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error When writing to " + this.PortName);
+            }
+        }
+        public void SendObjViaSerial()
+        {
+            string temp = ClassToJson(cmdMsg);
+            if (!this.IsOpen)
+            {
+                form.ShowDialog();
+            }
+            try
+            {
+                this.WriteLine(temp);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error When writing to " + this.PortName);
+            }
         }
         #endregion
         #region Properties

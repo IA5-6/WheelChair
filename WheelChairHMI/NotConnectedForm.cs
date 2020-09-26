@@ -21,12 +21,26 @@ namespace WheelChairHMI
         {
             InitializeComponent();
             Com = com;
-            com.populateCbo(cboCom);
+            
         }
+       
+
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            Com.btnConnectClick(sender, e);
+            Com.BtnConnectClick(sender, e);
+            if (Com.IsOpen)
+            {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+            }
+        }
+
+        private void notConnectedForm_Shown(object sender, EventArgs e)
+        {
+            Com.Cbo = cboCom;
+            Com.populateCbo();
         }
     }
 }
