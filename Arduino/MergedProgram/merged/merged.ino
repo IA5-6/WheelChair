@@ -27,6 +27,84 @@ String incomingString="";
 int speed = 0;
 bool drive, left, right;
 
+void Wheel1Movement() {
+  // Method runs when the wheel_1 sensor detects a rising edge.
+  //Serial.println("wh1");
+}
+
+void Wheel2Movement() {
+  // Method runs when the wheel_2 sensor detects a rising edge.
+  //Serial.println("wh2");
+}
+void SetM1Speed(int sp) {
+  // This method is used to set the speed of wheel1.
+  // This is the only method that is allowed to write to the motor1 pins.
+  int sp_send = min(100,abs(sp)); // Safety speed limit
+  digitalWrite(m1_FwPin, sp > 0);
+  digitalWrite(m1_BwPin, sp < 0);
+  analogWrite(m1_SpeedPin, sp_send);
+}
+
+void SetM2Speed(int sp) {
+  // This method is used to set the speed of wheel2.
+  // This is the only method that is allowed to write to the motor2 pins.
+  int sp_send = min(100,abs(sp)); // Safety speed limit
+  digitalWrite(m2_FwPin, sp > 0);
+  digitalWrite(m2_BwPin, sp < 0);
+  analogWrite(m2_SpeedPin, sp_send);
+}
+
+StaticJsonDocument<200> inDoc;
+StaticJsonDocument<200> outDoc;
+
+void decodeMsg(){
+  DeserializationError err=deserializeJson(inDoc, incomingString);
+  speed = inDoc["Speed"];
+  drive = inDoc["Drive"];
+  left = inDoc["Left"];
+  right = inDoc["Right"];
+  if(drive == true){
+    if(left){
+    SetM1Speed(speed);
+    SetM2Speed(int(speed*1.3));
+    }
+   else if(right){
+    SetM1Speed(int(speed*1.3));
+    SetM2Speed(speed);
+   }
+  }
+  else{
+    //stå stille
+    speed = 0;
+    SetM1Speed(speed);
+    SetM2Speed(speed);
+  }
+}
+void codeMsg(){
+      /*public bool EmergencyStop { get; set; }
+
+        public int Speed { get; set; }
+
+        public bool Zone1Tripped { get; set; }
+
+        public bool Zone2Tripped { get; set; }
+
+        public bool Zone3Tripped { get; set; }
+
+        public bool Zone4Tripped { get; set; }
+
+        public int BatteryLevel { get; set; }*/
+    
+    outDoc["EmergencyStop"]="false";
+    outDoc["Speed"]=speed;
+    outDoc["Zone1Tripped"]="false";
+    outDoc["Zone2Tripped"]="true";
+    outDoc["Zone3Tripped"]="false";
+    outDoc["Zone4Tripped"]="true";
+    outDoc["BatteryLevel"]=50;
+    serializeJson(outDoc,Serial);
+    Serial.println();//adds a line break
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -61,8 +139,6 @@ void setup() {
 
 }
 
-StaticJsonDocument<200> inDoc;
-StaticJsonDocument<200> outDoc;
 
 void loop() {
   // put your main code here, to run repeatedly:
@@ -78,80 +154,3 @@ void loop() {
   delay(1000);
 }
  
-}
-
-void SetM1Speed(int sp) {
-  // This method is used to set the speed of wheel1.
-  // This is the only method that is allowed to write to the motor1 pins.
-  int sp_send = min(100,abs(sp)); // Safety speed limit
-  digitalWrite(m1_FwPin, sp > 0);
-  digitalWrite(m1_BwPin, sp < 0);
-  analogWrite(m1_SpeedPin, sp_send);
-}
-
-void SetM2Speed(int sp) {
-  // This method is used to set the speed of wheel2.
-  // This is the only method that is allowed to write to the motor2 pins.
-  int sp_send = min(100,abs(sp)); // Safety speed limit
-  digitalWrite(m2_FwPin, sp > 0);
-  digitalWrite(m2_BwPin, sp < 0);
-  analogWrite(m2_SpeedPin, sp_send);
-}
-
-void Wheel1Movement() {
-  // Method runs when the wheel_1 sensor detects a rising edge.
-  //Serial.println("wh1");
-}
-
-void Wheel2Movement() {
-  // Method runs when the wheel_2 sensor detects a rising edge.
-  //Serial.println("wh2");
-}
-void decodeMsg(){
-  DeserializationError err=deserializeJson(inDoc, incomingString);
-  speed = inDoc["Speed"];
-  drive = inDoc["Drive"];
-  left = inDoc["Left"];
-  right = inDoc["Right"];
-  if(drive == true){
-    if(left){
-    SetM1Speed(speed);
-    SetM2Speed(int(speed*1.3));
-    }
-   else if(right){
-    SetM1Speed(int(speed*1.3));
-    SetM2Speed(speed);
-   }
-  }
-  else{
-    //stå stille
-    speed = 0
-    SetM1Speed(speed);
-    SetM2Speed(speed);
-  }
-}
-void codeMsg(){
-      /*public bool EmergencyStop { get; set; }
-
-        public int Speed { get; set; }
-
-        public bool Zone1Tripped { get; set; }
-
-        public bool Zone2Tripped { get; set; }
-
-        public bool Zone3Tripped { get; set; }
-
-        public bool Zone4Tripped { get; set; }
-
-        public int BatteryLevel { get; set; }*/
-    
-    outDoc["EmergencyStop"]="false";
-    outDoc["Speed"]=speed;
-    outDoc["Zone1Tripped"]="false";
-    outDoc["Zone2Tripped"]="true";
-    outDoc["Zone3Tripped"]="false";
-    outDoc["Zone4Tripped"]="true";
-    outDoc["BatteryLevel"]=50;
-    serializeJson(outDoc,Serial);
-    Serial.println();//adds a line break
-}
