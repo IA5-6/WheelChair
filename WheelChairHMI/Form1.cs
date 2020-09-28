@@ -43,27 +43,41 @@ namespace WheelChairHMI
 
         private void btnAckAlarms_Click(object sender, EventArgs e)
         {
-            dB.UpdateAlarm();
             dB.AckAlarms();
+            dB.UpdateAlarm();
         }
-
+        /// <summary>
+        /// Test button for logging alarms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTest_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-
             dB.LogAlarms(1, rand.NextDouble()*100);
         }
-
+        /// <summary>
+        /// Test button for logging data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-            dB.LogAlarms(rand.Next(1, 7), rand.NextDouble() * 100);
+            dB.LogData(rand.Next(1, 3), rand.NextDouble() * 100);
         }
-
+        //Event for updating the alarms manually.
         private void btnUpdateAlarms_Click(object sender, EventArgs e)
         {
             dB.UpdateAlarm();
         }
+        //Event for updatning historical data to the data grid view manually
+        private void btnUpdateData_Click(object sender, EventArgs e)
+        {
+            dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
+        }
+        
+
     }
     
 }

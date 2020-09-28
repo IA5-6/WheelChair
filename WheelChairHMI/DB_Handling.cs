@@ -64,26 +64,30 @@ namespace WheelChairHMI
         {
             return new SqlConnection(DBConfig);
         }
-        //Method for sending Query statements to sql.
+        //Method for sending a command to the database.
         /// <summary>
-        /// This methods sends query command to the db.
+        /// Method for sending a command to the database.
         /// </summary>
-        /// <param name="Q">The desiered sql query</param>
-        private void CnnSendCommand(string Q)
+        /// <param name="commandstring">The commanda you wish to send to the database.</param>
+        private void SendCommand(string commandstring)
         {
             try
             {
-                SqlConnection sqlConnection = new SqlConnection(DBConfig);
-                SqlCommand sql = new SqlCommand(Q, sqlConnection);
-                sqlConnection.Open();
-                sql.ExecuteNonQuery();
-                sqlConnection.Close();
+                using (SqlConnection con = DBcon())
+                {
+                    using (SqlCommand cmd = new SqlCommand(commandstring, con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
-            catch (Exception e)
+            catch (Exception exe)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(exe.Message);
             }
         }
+
         #endregion
 
         #region Public methods
@@ -95,20 +99,20 @@ namespace WheelChairHMI
         /// </summary>
         /// <param name="dataId">The id that represent diffrent types of data.</param>
         /// <param name="dataval">The value of data to be stored.</param>
-        public void LogData(double dataval, int dataId)
+        public void LogData(int dataId, double dataVal)
         {
             Timestamp = DateTime.Now;
             try
             {
                 using (SqlConnection con = DBcon())
                 {
-                    using (SqlCommand cmd = new SqlCommand("Insert into Timestamps values (@c1)" +
+                    using (SqlCommand cmd = new SqlCommand("Insert into Timestamp values (@c1)" +
                         "Insert into Data values(@c2,@c3,@c4)", con))
                     {
                         cmd.Parameters.AddWithValue("@c1", Timestamp);
                         cmd.Parameters.AddWithValue("@c2", Timestamp);
                         cmd.Parameters.AddWithValue("@c3", dataId);
-                        cmd.Parameters.AddWithValue("c4", dataval);
+                        cmd.Parameters.AddWithValue("c4", dataVal);
                         con.Open();
                         cmd.ExecuteNonQuery();
                     }
@@ -134,7 +138,7 @@ namespace WheelChairHMI
                 delete from Timestamp
                 alter table Data check constraint all
                 alter table Data check constraint all");
-            CnnSendCommand(Query);
+            SendCommand(Query);
         }
         //Method for logging alarms.
         /// <summary>
@@ -174,9 +178,10 @@ namespace WheelChairHMI
         }
         //Method for obtaining data table of alarms.
         /// <summary>
-        /// There are two view in the database right now.
+        /// There are three views in the database right now. To get a view, write the name of a procedure wich selects data.
         /// To get alarm history write ViewAlarmHistory.
         /// To get active alarms write ViewActiveAlarms.
+        /// To get data history write ViewDataHistory.
         /// The method will return a DataTable with either alarmhistory or active alarms.
         /// </summary>
         /// <returns></returns>
@@ -242,30 +247,21 @@ namespace WheelChairHMI
             }
             return vs;
         }
+        //Method for activating the UpdateAlarms event.
         /// <summary>
-        /// Metode for å kjøre UpdateAlarms eventet.
+        /// Method for activating the UpdateAlarms event.
         /// </summary>
         public void UpdateAlarm()
         {
             UpdateAlarms(this, new EventArgs());
         }
+        //Method for acknowledgeing all unacknowledge alarms.
+        /// <summary>
+        /// Method that calls up a procedure, which alters the acked value to 1 for all unacked alarms.
+        /// </summary>
         public void AckAlarms()
         {
-            try
-            {
-                using (SqlConnection con = DBcon())
-                {
-                    using (SqlCommand cmd = new SqlCommand("AckAllAlarms",con))
-                    {
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception exe)
-            {
-                MessageBox.Show(exe.Message);
-            }
+            SendCommand("AckAllAlarms");
         }
         #endregion
 
