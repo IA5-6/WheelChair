@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+
 using System.Reflection;
 
 namespace WheelChairHMI
 {
     class Alarm
     {
+        public event EventHandler Emergency;
+        public event EventHandler Speed;
+        public event EventHandler ZoneActive1;
+        public event EventHandler ZoneActive2;
+        public event EventHandler ZoneActive3;
+        public event EventHandler ZoneActive4;
+        public event EventHandler Battery;
         bool[] alarmCheck;
         List<string> alarmCollection;
 
@@ -32,13 +40,7 @@ namespace WheelChairHMI
             {
                 alarmCheck[i]=false;
             }
-          /*  bool emergencyStop = false;
-            bool speed = false;
-            bool zoneOneTripped = false;
-            bool zoneTwoTripped = false;
-            bool zoneThreeTripped = false;
-            bool zoneFourTripped = false;
-            bool lowBattery = false;*/
+       
         }
 
 
@@ -49,54 +51,69 @@ namespace WheelChairHMI
                 alarmListValue.Add(prop.GetValue(arduinoValues).ToString());
                 alarmListName.Add(prop.Name);
             }
-            if (alarmListValue[0] != "False")
-            {
-                alarmCheck[0]=true;
-            }
-            else if(Convert.ToInt32(alarmListValue[1])>10)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Must change value to more spesific
-            {
-                alarmCheck[1] = (true);
-            }
-            else if(alarmListValue[2]!= "False")
-            {
-                alarmCheck[2] = (true);
-            }
-            else if (alarmListValue[3] != "False")
-            {
-                alarmCheck[3] = (true);
-            }
-            else if (alarmListValue[4] != "False")
-            {
-                alarmCheck[4] = (true);
-            }
-            else if (alarmListValue[5] != "False")
-            {
-                alarmCheck[5] = (true);
-            }
-            else if (Convert.ToInt32(alarmListValue[6] )< 50)//!!!!!!!!!!!!!!!!!!!!!!!!Unsure on this parameter of low battery.
-            {
-                alarmCheck[6] = (true);
-            }
-            AlarmStample();
-        }
-        private void AlarmStample() //Alarmclass that stample the alarm and add the values to a new list 
-        {
             
-            DateTime alarmTime = DateTime.Now;
-            
-            for (int i = 0; i < alarmCheck.Length; i++)
-            {
-                if (alarmCheck[i]==true)
+                if (alarmCheck[0]==false)
                 {
-                    alarmCollection.Add(alarmTime.ToString());
-                    alarmCollection.Add(alarmListName[i]);
-                    alarmCollection.Add(alarmListValue[i]);
+                    if (alarmListValue[0]=="true")
+                    {
+                        alarmCheck[0] = true;
+                        Emergency(this, new EventArgs());
+                    }
+
                 }
-               
+                else if(alarmCheck[1]==false) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Must change value to more spesific
+                {
+                if (Convert.ToInt64(alarmListValue[]) > 10)//If the speed is faster then...
+                {
+
+                    alarmCheck[1] = true;
+                    Speed(this, new EventArgs());
+                }
+                }
+                else if (alarmCheck[2]==false)
+                {
+                if (alarmListValue[2] != "False")
+                {
+                    alarmCheck[2] = (true);
+                    ZoneActive1(this, new EventArgs());
+                }
+                }
+            else if (alarmCheck[3] == false)
+            {
+                if (alarmListValue[3] != "False")
+                {
+                    alarmCheck[3] = (true);
+                    ZoneActive2(this, new EventArgs());
+                }
             }
-            
-           
+            else if (alarmCheck[4] == false)
+            {
+                if (alarmListValue[4] != "False")
+                {
+                    alarmCheck[4] = (true);
+                    ZoneActive3(this, new EventArgs());
+                }
+            }
+            else if (alarmCheck[5] == false)
+            {
+                if (alarmListValue[5] != "False")
+                {
+                    alarmCheck[5] = (true);
+                    ZoneActive4(this, new EventArgs());
+                }
+            }
+            else if (alarmCheck[6] == false)
+            {
+                if (Convert.ToInt64(alarmListValue[5])< 100)//MUST CHANGE VALUE TO MORE SPESIFIC!!!!!!!!!!!!!!
+                {
+                    alarmCheck[5] = (true);
+                    Battery(this, new EventArgs());
+                }
+            }
+
         }
+        //!!!!!!!
+        
         public List<string> AlarmCollection { get { return alarmCollection; } }
 
     }
