@@ -63,7 +63,7 @@ namespace WheelChairHMI
                 }
                 else if(alarmCheck[1]==false) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Must change value to more spesific
                 {
-                if (Convert.ToInt64(alarmListValue[]) > 10)//If the speed is faster then...
+                if (Convert.ToInt64(alarmListValue[1]) > 10)//If the speed is faster then...
                 {
 
                     alarmCheck[1] = true;
