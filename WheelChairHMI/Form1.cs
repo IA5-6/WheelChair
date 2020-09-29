@@ -35,7 +35,7 @@ namespace WheelChairHMI
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
 
-            alarmCollection.AlarmCheck(message);
+            alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass 
         }
 
         

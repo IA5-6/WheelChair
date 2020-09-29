@@ -12,29 +12,26 @@ namespace WheelChairHMI
 {
     class Alarm
     {
-        public event EventHandler Emergency;
-        public event EventHandler Speed;
-        public event EventHandler ZoneActive1;
-        public event EventHandler ZoneActive2;
-        public event EventHandler ZoneActive3;
-        public event EventHandler ZoneActive4;
-        public event EventHandler Battery;
+        public event EventHandler Emergency;   // Event for Emergency stop
+        public event EventHandler Speed;       // Event for high Speed
+        public event EventHandler ZoneActive1; //Event for active Zone1
+        public event EventHandler ZoneActive2; //Event for active Zone2
+        public event EventHandler ZoneActive3; //Event for active Zone3
+        public event EventHandler ZoneActive4; //Event for active Zone4
+        public event EventHandler Battery;    //Event for low battery
         bool[] alarmCheck;
-        List<string> alarmCollection;
-
-
-        List<string> alarmListValue;
-        List<string> alarmListName;
        
+        List<string> alarmListValue; //Creating list for values
+        List<string> alarmListName; //Creating list for names
+
         public Alarm()//Alarm constructor
         {
-            alarmCheck= new bool[7];
-            alarmCollection= new List<string>();
+            alarmCheck= new bool[7]; //Bool with all alarmvariables
             alarmListValue = new List<string>(); //Should be 
             alarmListName = new List<string>(); //Should be 
         }
 
-        private void alarmBoolList()
+        private void alarmBoolList() //Sets all boolindex to false
         {
             for (int i = 0; i < alarmCheck.Length; i++)
             {
@@ -44,77 +41,76 @@ namespace WheelChairHMI
         }
 
 
-        public void AlarmCheck (JsonDataMessage arduinoValues)//Must chech how to inport json !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public void AlarmCheck (JsonDataMessage arduinoValues)//Checking the alarmvalues and makes event if true
         {
-            foreach (PropertyInfo prop in arduinoValues.GetType().GetProperties())
+            foreach (PropertyInfo prop in arduinoValues.GetType().GetProperties()) //Getting values from arudino
             {
-                alarmListValue.Add(prop.GetValue(arduinoValues).ToString());
-                alarmListName.Add(prop.Name);
+                alarmListValue.Add(prop.GetValue(arduinoValues).ToString()); //adding values to list of the last updated value from arduino
+                alarmListName.Add(prop.Name); //Adding names to the list with alarmnames
             }
             
-                if (alarmCheck[0]==false)
+                if (alarmCheck[0]==false) //Checking if the emergencyStop bool is active
                 {
-                    if (alarmListValue[0]=="true")
+                    if (alarmListValue[0]=="true") //Checking the value on emergencyStop
                     {
                         alarmCheck[0] = true;
-                        Emergency(this, new EventArgs());
+                        Emergency(this, new EventArgs()); //Making event for Emergency
                     }
 
                 }
-                else if(alarmCheck[1]==false) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Must change value to more spesific
+                else if(alarmCheck[1]==false) //Checking if the speed bool is false
+            {
+                if (Convert.ToInt64(alarmListValue[1]) > 10)//If the speed is faster then...MUST CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
-                if (Convert.ToInt64(alarmListValue[1]) > 10)//If the speed is faster then...
-                {
-
                     alarmCheck[1] = true;
-                    Speed(this, new EventArgs());
+                    Speed(this, new EventArgs()); //Making event for high speed
                 }
                 }
-                else if (alarmCheck[2]==false)
-                {
-                if (alarmListValue[2] != "False")
+                else if (alarmCheck[2]==false)//Checking if the Zone1 bool is false
+            {
+                if (alarmListValue[2] != "False")//Checking if the Zone1 value is false
                 {
                     alarmCheck[2] = (true);
-                    ZoneActive1(this, new EventArgs());
+                    ZoneActive1(this, new EventArgs()); //Making event for Zone1 activated
                 }
                 }
-            else if (alarmCheck[3] == false)
+            else if (alarmCheck[3] == false)//Checking if the Zone2 bool is false
             {
-                if (alarmListValue[3] != "False")
+                if (alarmListValue[3] != "False")//Checking if the Zone2 value is false
                 {
                     alarmCheck[3] = (true);
-                    ZoneActive2(this, new EventArgs());
+                    ZoneActive2(this, new EventArgs()); //Making event for Zone2 activated
                 }
             }
-            else if (alarmCheck[4] == false)
+            else if (alarmCheck[4] == false)//Checking if the Zone3 bool is false
             {
-                if (alarmListValue[4] != "False")
+                if (alarmListValue[4] != "False")//Checking if the Zone3 value is false
                 {
                     alarmCheck[4] = (true);
-                    ZoneActive3(this, new EventArgs());
+                    ZoneActive3(this, new EventArgs()); //Making event for Zone3 activated
                 }
             }
-            else if (alarmCheck[5] == false)
+            else if (alarmCheck[5] == false)//Checking if the Zone4 bool is false
             {
-                if (alarmListValue[5] != "False")
+                if (alarmListValue[5] != "False")//Checking if the Zone4 value is false
                 {
                     alarmCheck[5] = (true);
-                    ZoneActive4(this, new EventArgs());
+                    ZoneActive4(this, new EventArgs()); //Making event for Zone4 activated
                 }
             }
-            else if (alarmCheck[6] == false)
+            else if (alarmCheck[6] == false)//Checking if the battery low bool is false
             {
                 if (Convert.ToInt64(alarmListValue[5])< 100)//MUST CHANGE VALUE TO MORE SPESIFIC!!!!!!!!!!!!!!
                 {
                     alarmCheck[5] = (true);
-                    Battery(this, new EventArgs());
+                    Battery(this, new EventArgs()); //Making event for low battery
                 }
             }
 
         }
-        //!!!!!!!
+       
         
-        public List<string> AlarmCollection { get { return alarmCollection; } }
+       
 
     }
 }
