@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace WheelChairHMI
 {
@@ -42,8 +43,6 @@ namespace WheelChairHMI
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.LatestMessage;
             //MessageBox.Show(toBeChecked.Speed.ToString());
-            
-            
         }
     }
     

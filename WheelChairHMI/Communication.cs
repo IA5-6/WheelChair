@@ -16,7 +16,7 @@ namespace WheelChairHMI
     class Communication:SerialPort
     {
         #region Fields 
-        private int turningSpeed = 5;
+        private int turningSpeed = 30;
         private string recievedData;
         private bool dataReady;
         private JsonDataMessage lastMsg;
@@ -114,7 +114,14 @@ namespace WheelChairHMI
             {
                 recievedData = ReadLine();
                 lastMsg = JsonConvert.DeserializeObject<JsonDataMessage>(recievedData);
-                Speed = lastMsg.Speed;
+                if (!lastMsg.Zone1Tripped)
+                {
+                    Speed = lastMsg.Speed;
+                }
+                else
+                {
+                    Speed = 0;
+                }
                 dataReady = true;
                 dataIsReady(this, new EventArgs());
             }
@@ -129,6 +136,8 @@ namespace WheelChairHMI
         #region DriveMethods
         public void DriveForward()
         {
+            cmdMsg.Left = false;
+            cmdMsg.Right = false;
             if (Speed < 0)
             {
                 cmdMsg.Drive = false;
@@ -136,12 +145,18 @@ namespace WheelChairHMI
             }
             else if(Speed>=0)
             {
+                if (!lastMsg.Zone1Tripped)
+                {
                 cmdMsg.Drive = true;
-                cmdMsg.Speed += 5;
+                cmdMsg.Speed += 15;
+
+                }
             }
         }
         public void DriveBack()
         {
+            cmdMsg.Left = false;
+            cmdMsg.Right = false;
             if (Speed >0)
             {
                 cmdMsg.Drive = false;
@@ -150,7 +165,7 @@ namespace WheelChairHMI
             else if(Speed<=0)
             {
                 cmdMsg.Drive = true;
-                cmdMsg.Speed -= 5;
+                cmdMsg.Speed -= 15;
             }
         }
         public void TurnLeft()
@@ -173,6 +188,7 @@ namespace WheelChairHMI
             
             PortName = Cbo.SelectedItem.ToString();
             Open();
+            ReadExisting();
             ConnectButton.Text = "Disconnect";
         }
         internal void DisconnectPort()

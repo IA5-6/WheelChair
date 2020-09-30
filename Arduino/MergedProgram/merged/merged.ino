@@ -26,7 +26,8 @@ const int reflection2Pin = 39;
 String incomingString="";
 int speed = 0;
 bool drive, left, right;
-
+const int cap=JSON_OBJECT_SIZE(17);
+bool q1stat;
 void Wheel1Movement() {
   // Method runs when the wheel_1 sensor detects a rising edge.
   //Serial.println("wh1");
@@ -55,29 +56,43 @@ void SetM2Speed(int sp) {
 }
 
 StaticJsonDocument<200> inDoc;
-StaticJsonDocument<200> outDoc;
-
+StaticJsonDocument<cap> outDoc;
+void checkLidar(){
+  q1stat= digitalRead(lidar_Q1Pin);
+  if(q1stat){
+    drive = false;
+    stopMotors();
+  }
+}
+void stopMotors(){
+  speed = 0;
+    SetM1Speed(speed);
+    SetM2Speed(speed);
+}
 void decodeMsg(){
+  
   DeserializationError err=deserializeJson(inDoc, incomingString);
   speed = inDoc["Speed"];
   drive = inDoc["Drive"];
   left = inDoc["Left"];
   right = inDoc["Right"];
-  if(drive == true){
+  if((drive == true) && (!q1stat)){
     if(left){
-    SetM1Speed(speed);
-    SetM2Speed(int(speed*1.3));
+    SetM1Speed(-speed);
+    SetM2Speed(speed);
     }
    else if(right){
-    SetM1Speed(int(speed*1.3));
+    SetM1Speed(speed);
+    SetM2Speed(-speed);
+   }
+   else{
+    SetM1Speed(speed);
     SetM2Speed(speed);
    }
   }
   else{
     //stå stille
-    speed = 0;
-    SetM1Speed(speed);
-    SetM2Speed(speed);
+    stopMotors();
   }
 }
 void codeMsg(){
@@ -97,7 +112,7 @@ void codeMsg(){
     
     outDoc["EmergencyStop"]="false";
     outDoc["Speed"]=speed;
-    outDoc["Zone1Tripped"]="false";
+    outDoc["Zone1Tripped"]=q1stat;
     outDoc["Zone2Tripped"]="true";
     outDoc["Zone3Tripped"]="false";
     outDoc["Zone4Tripped"]="true";
@@ -142,15 +157,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+ checkLidar();
   if (Serial.available() > 0) {
-    delay(2000);
+    //delay(2000);
     // read the incoming string
     incomingString = Serial.readStringUntil('\n');
     decodeMsg();
-    
   }
   codeMsg();
-  delay(1000);
+  delay(100);
 }
  

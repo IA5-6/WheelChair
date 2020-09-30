@@ -24,6 +24,7 @@ namespace WheelChairHMI
 
         public void ProcessBtnClick(Keys key)
         {
+            
             switch (key)
             {
                 case Keys.Up:
