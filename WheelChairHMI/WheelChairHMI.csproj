@@ -104,5 +104,17 @@
   <ItemGroup>
     <None Include="Properties\Alarm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ArrowForward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ArrowLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\ArrowBackward.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

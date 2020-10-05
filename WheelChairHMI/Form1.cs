@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WheelChairHMI
 {
@@ -29,40 +31,49 @@ namespace WheelChairHMI
             dB.UpdateAlarm();
             alarmCollection= new Alarm();
         }
-
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
+
             alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass
 
             
+
         }
         private void UpdateAlarms(object o, EventArgs e)
         {
-            dgvActiceAlarms.DataSource = dB.ViewsFromDatabase("ViewActiveAlarms");
-            dgvAlarmHistory.DataSource = dB.ViewsFromDatabase("ViewAlarmHistory");
+            dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
+            
+            
         }
 
         private void btnAckAlarms_Click(object sender, EventArgs e)
         {
-            dB.UpdateAlarm();
             dB.AckAlarms();
+            dB.UpdateAlarm();
         }
-
+        /// <summary>
+        /// Test button for logging alarms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTest_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-
-            dB.LogAlarms(1, rand.NextDouble()*100);
+            dB.LogAlarms(1, rand.NextDouble() * 100);
         }
-
+        /// <summary>
+        /// Test button for logging data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-            dB.LogAlarms(rand.Next(1, 7), rand.NextDouble() * 100);
+            dB.LogData(rand.Next(1, 3), rand.NextDouble() * 100);
         }
-
+        //Event for updating the alarms manually.
         private void btnUpdateAlarms_Click(object sender, EventArgs e)
         {
             dB.UpdateAlarm();
@@ -72,7 +83,12 @@ namespace WheelChairHMI
 
         }
 
-        
+        //Event for updatning historical data to the data grid view manually
+        private void btnUpdateData_Click(object sender, EventArgs e)
+        {
+            dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
+        }
+
     }
     
 }
