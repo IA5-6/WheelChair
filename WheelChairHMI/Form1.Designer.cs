@@ -69,17 +69,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
+
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabMain);
             this.tabControl1.Controls.Add(this.tabSetitngs);
             this.tabControl1.Controls.Add(this.tabData);
+
             this.tabControl1.Location = new System.Drawing.Point(-3, -3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1091, 678);
-            this.tabControl1.TabIndex = 12;
+            this.tabControl1.Location = new System.Drawing.Point(3, -1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1441, 817);
+
+            
             // 
+
             // tabMain
             // 
             this.tabMain.Controls.Add(this.dataGridViewAlarms);
@@ -216,6 +225,7 @@
             this.zone2.Size = new System.Drawing.Size(90, 70);
             this.zone2.TabIndex = 11;
             this.zone2.UseVisualStyleBackColor = false;
+
             // 
             // groupBoxControls
             // 
@@ -301,6 +311,7 @@
             this.btnEnableDriving.Text = "Enable driving";
             this.btnEnableDriving.UseVisualStyleBackColor = true;
             // 
+
             // tabSetitngs
             // 
             this.tabSetitngs.Location = new System.Drawing.Point(4, 22);
@@ -361,13 +372,88 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "All the data stored in the database";
             // 
+            // picBoxBwd
+            // 
+            this.picBoxBwd.Image = global::WheelChairHMI.Properties.Resources.ArrowBackward;
+            this.picBoxBwd.Location = new System.Drawing.Point(325, 221);
+            this.picBoxBwd.Name = "picBoxBwd";
+            this.picBoxBwd.Size = new System.Drawing.Size(45, 62);
+            this.picBoxBwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxBwd.TabIndex = 19;
+            this.picBoxBwd.TabStop = false;
+            // 
+            // picBoxRight
+            // 
+            this.picBoxRight.Image = global::WheelChairHMI.Properties.Resources.ArrowRight;
+            this.picBoxRight.Location = new System.Drawing.Point(405, 115);
+            this.picBoxRight.Name = "picBoxRight";
+            this.picBoxRight.Size = new System.Drawing.Size(62, 45);
+            this.picBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxRight.TabIndex = 18;
+            this.picBoxRight.TabStop = false;
+            // 
+            // picBoxLeft
+            // 
+            this.picBoxLeft.Image = global::WheelChairHMI.Properties.Resources.ArrowLeft;
+            this.picBoxLeft.Location = new System.Drawing.Point(227, 115);
+            this.picBoxLeft.Name = "picBoxLeft";
+            this.picBoxLeft.Size = new System.Drawing.Size(62, 45);
+            this.picBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxLeft.TabIndex = 17;
+            this.picBoxLeft.TabStop = false;
+            // 
+            // picBoxFwd
+            // 
+            this.picBoxFwd.Image = global::WheelChairHMI.Properties.Resources.ArrowForward;
+            this.picBoxFwd.Location = new System.Drawing.Point(324, 39);
+            this.picBoxFwd.Name = "picBoxFwd";
+            this.picBoxFwd.Size = new System.Drawing.Size(46, 63);
+            this.picBoxFwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxFwd.TabIndex = 16;
+            this.picBoxFwd.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WheelChairHMI.Properties.Resources.Alarm;
+            this.pictureBox1.Location = new System.Drawing.Point(32, 205);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(115, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblAlarms
+            // 
+            this.lblAlarms.AutoSize = true;
+            this.lblAlarms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarms.Location = new System.Drawing.Point(213, 337);
+            this.lblAlarms.Name = "lblAlarms";
+            this.lblAlarms.Size = new System.Drawing.Size(153, 24);
+            this.lblAlarms.TabIndex = 20;
+            this.lblAlarms.Text = "Alarm overview";
+            // 
+            // dataGridViewAlarms
+            // 
+            this.dataGridViewAlarms.AllowUserToAddRows = false;
+            this.dataGridViewAlarms.AllowUserToDeleteRows = false;
+            this.dataGridViewAlarms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAlarms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlarms.Location = new System.Drawing.Point(212, 364);
+            this.dataGridViewAlarms.Name = "dataGridViewAlarms";
+            this.dataGridViewAlarms.ReadOnly = true;
+            this.dataGridViewAlarms.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dataGridViewAlarms.Size = new System.Drawing.Size(871, 288);
+            this.dataGridViewAlarms.TabIndex = 21;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(1084, 671);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wheelchair HMI";
