@@ -30,6 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.dataGridViewAlarms = new System.Windows.Forms.DataGridView();
+            this.lblAlarms = new System.Windows.Forms.Label();
+            this.picBoxBwd = new System.Windows.Forms.PictureBox();
+            this.picBoxRight = new System.Windows.Forms.PictureBox();
+            this.picBoxLeft = new System.Windows.Forms.PictureBox();
+            this.picBoxFwd = new System.Windows.Forms.PictureBox();
             this.lblFwd = new System.Windows.Forms.Label();
             this.zone1 = new System.Windows.Forms.Button();
             this.zone4 = new System.Windows.Forms.Button();
@@ -39,6 +45,7 @@
             this.btnUpdateAlarms = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAckAlarms = new System.Windows.Forms.Button();
             this.btnDisable = new System.Windows.Forms.Button();
             this.btnEnableDriving = new System.Windows.Forms.Button();
@@ -48,25 +55,18 @@
             this.btnUpdateData = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.picBoxBwd = new System.Windows.Forms.PictureBox();
-            this.picBoxRight = new System.Windows.Forms.PictureBox();
-            this.picBoxLeft = new System.Windows.Forms.PictureBox();
-            this.picBoxFwd = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblAlarms = new System.Windows.Forms.Label();
-            this.dataGridViewAlarms = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabMain.SuspendLayout();
-            this.groupBoxControls.SuspendLayout();
-            this.tabData.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBwd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFwd)).BeginInit();
+            this.groupBoxControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
+            this.tabData.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,6 +101,69 @@
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main menu";
             this.tabMain.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewAlarms
+            // 
+            this.dataGridViewAlarms.AllowUserToAddRows = false;
+            this.dataGridViewAlarms.AllowUserToDeleteRows = false;
+            this.dataGridViewAlarms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAlarms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlarms.Location = new System.Drawing.Point(212, 364);
+            this.dataGridViewAlarms.Name = "dataGridViewAlarms";
+            this.dataGridViewAlarms.ReadOnly = true;
+            this.dataGridViewAlarms.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dataGridViewAlarms.Size = new System.Drawing.Size(871, 288);
+            this.dataGridViewAlarms.TabIndex = 21;
+            // 
+            // lblAlarms
+            // 
+            this.lblAlarms.AutoSize = true;
+            this.lblAlarms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarms.Location = new System.Drawing.Point(213, 337);
+            this.lblAlarms.Name = "lblAlarms";
+            this.lblAlarms.Size = new System.Drawing.Size(153, 24);
+            this.lblAlarms.TabIndex = 20;
+            this.lblAlarms.Text = "Alarm overview";
+            // 
+            // picBoxBwd
+            // 
+            this.picBoxBwd.Image = global::WheelChairHMI.Properties.Resources.ArrowBackward;
+            this.picBoxBwd.Location = new System.Drawing.Point(325, 221);
+            this.picBoxBwd.Name = "picBoxBwd";
+            this.picBoxBwd.Size = new System.Drawing.Size(45, 62);
+            this.picBoxBwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxBwd.TabIndex = 19;
+            this.picBoxBwd.TabStop = false;
+            // 
+            // picBoxRight
+            // 
+            this.picBoxRight.Image = global::WheelChairHMI.Properties.Resources.ArrowRight;
+            this.picBoxRight.Location = new System.Drawing.Point(405, 115);
+            this.picBoxRight.Name = "picBoxRight";
+            this.picBoxRight.Size = new System.Drawing.Size(62, 45);
+            this.picBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxRight.TabIndex = 18;
+            this.picBoxRight.TabStop = false;
+            // 
+            // picBoxLeft
+            // 
+            this.picBoxLeft.Image = global::WheelChairHMI.Properties.Resources.ArrowLeft;
+            this.picBoxLeft.Location = new System.Drawing.Point(227, 115);
+            this.picBoxLeft.Name = "picBoxLeft";
+            this.picBoxLeft.Size = new System.Drawing.Size(62, 45);
+            this.picBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxLeft.TabIndex = 17;
+            this.picBoxLeft.TabStop = false;
+            // 
+            // picBoxFwd
+            // 
+            this.picBoxFwd.Image = global::WheelChairHMI.Properties.Resources.ArrowForward;
+            this.picBoxFwd.Location = new System.Drawing.Point(324, 39);
+            this.picBoxFwd.Name = "picBoxFwd";
+            this.picBoxFwd.Size = new System.Drawing.Size(46, 63);
+            this.picBoxFwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxFwd.TabIndex = 16;
+            this.picBoxFwd.TabStop = false;
             // 
             // lblFwd
             // 
@@ -200,6 +263,16 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WheelChairHMI.Properties.Resources.Alarm;
+            this.pictureBox1.Location = new System.Drawing.Point(32, 205);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(115, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnAckAlarms
             // 
             this.btnAckAlarms.Location = new System.Drawing.Point(5, 80);
@@ -288,79 +361,6 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "All the data stored in the database";
             // 
-            // picBoxBwd
-            // 
-            this.picBoxBwd.Image = global::WheelChairHMI.Properties.Resources.ArrowBackward;
-            this.picBoxBwd.Location = new System.Drawing.Point(325, 221);
-            this.picBoxBwd.Name = "picBoxBwd";
-            this.picBoxBwd.Size = new System.Drawing.Size(45, 62);
-            this.picBoxBwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBoxBwd.TabIndex = 19;
-            this.picBoxBwd.TabStop = false;
-            // 
-            // picBoxRight
-            // 
-            this.picBoxRight.Image = global::WheelChairHMI.Properties.Resources.ArrowRight;
-            this.picBoxRight.Location = new System.Drawing.Point(405, 115);
-            this.picBoxRight.Name = "picBoxRight";
-            this.picBoxRight.Size = new System.Drawing.Size(62, 45);
-            this.picBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBoxRight.TabIndex = 18;
-            this.picBoxRight.TabStop = false;
-            // 
-            // picBoxLeft
-            // 
-            this.picBoxLeft.Image = global::WheelChairHMI.Properties.Resources.ArrowLeft;
-            this.picBoxLeft.Location = new System.Drawing.Point(227, 115);
-            this.picBoxLeft.Name = "picBoxLeft";
-            this.picBoxLeft.Size = new System.Drawing.Size(62, 45);
-            this.picBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBoxLeft.TabIndex = 17;
-            this.picBoxLeft.TabStop = false;
-            // 
-            // picBoxFwd
-            // 
-            this.picBoxFwd.Image = global::WheelChairHMI.Properties.Resources.ArrowForward;
-            this.picBoxFwd.Location = new System.Drawing.Point(324, 39);
-            this.picBoxFwd.Name = "picBoxFwd";
-            this.picBoxFwd.Size = new System.Drawing.Size(46, 63);
-            this.picBoxFwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBoxFwd.TabIndex = 16;
-            this.picBoxFwd.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WheelChairHMI.Properties.Resources.Alarm;
-            this.pictureBox1.Location = new System.Drawing.Point(32, 205);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(115, 58);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblAlarms
-            // 
-            this.lblAlarms.AutoSize = true;
-            this.lblAlarms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlarms.Location = new System.Drawing.Point(213, 337);
-            this.lblAlarms.Name = "lblAlarms";
-            this.lblAlarms.Size = new System.Drawing.Size(153, 24);
-            this.lblAlarms.TabIndex = 20;
-            this.lblAlarms.Text = "Alarm overview";
-            // 
-            // dataGridViewAlarms
-            // 
-            this.dataGridViewAlarms.AllowUserToAddRows = false;
-            this.dataGridViewAlarms.AllowUserToDeleteRows = false;
-            this.dataGridViewAlarms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewAlarms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAlarms.Location = new System.Drawing.Point(212, 364);
-            this.dataGridViewAlarms.Name = "dataGridViewAlarms";
-            this.dataGridViewAlarms.ReadOnly = true;
-            this.dataGridViewAlarms.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.dataGridViewAlarms.Size = new System.Drawing.Size(871, 288);
-            this.dataGridViewAlarms.TabIndex = 21;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,18 +374,18 @@
             this.tabControl1.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabMain.PerformLayout();
-            this.groupBoxControls.ResumeLayout(false);
-            this.groupBoxControls.PerformLayout();
-            this.tabData.ResumeLayout(false);
-            this.tabData.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxFwd)).EndInit();
+            this.groupBoxControls.ResumeLayout(false);
+            this.groupBoxControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).EndInit();
+            this.tabData.ResumeLayout(false);
+            this.tabData.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 
         }
