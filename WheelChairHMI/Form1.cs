@@ -21,7 +21,6 @@ namespace WheelChairHMI
     {
 
         DB_Handling dB = new DB_Handling("Data Source=localhost\\" + "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
-        Communication communication;
         JsonDataMessage message;
         Alarm alarmCollection;
         readonly Communication communication;
