@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace WheelChairHMI
 {
@@ -28,17 +30,16 @@ namespace WheelChairHMI
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
         }
-
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
-            
         }
         private void UpdateAlarms(object o, EventArgs e)
         {
-            dgvActiceAlarms.DataSource = dB.ViewsFromDatabase("ViewActiveAlarms");
-            dgvAlarmHistory.DataSource = dB.ViewsFromDatabase("ViewAlarmHistory");
+            dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
+            
+            
         }
 
         private void btnAckAlarms_Click(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace WheelChairHMI
         private void btnTest_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-            dB.LogAlarms(1, rand.NextDouble()*100);
+            dB.LogAlarms(1, rand.NextDouble() * 100);
         }
         /// <summary>
         /// Test button for logging data.
@@ -76,8 +77,6 @@ namespace WheelChairHMI
         {
             dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
         }
-        
-
     }
     
 }
