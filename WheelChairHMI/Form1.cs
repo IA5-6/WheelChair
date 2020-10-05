@@ -36,6 +36,14 @@ namespace WheelChairHMI
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
             alarmCollection= new Alarm();
+            alarmCollection.Battery += new EventHandler(batteryAlarm);
+            alarmCollection.Emergency += new EventHandler(batteryAlarm);
+            alarmCollection.Speed += new EventHandler(speedAlarm);
+            alarmCollection.ZoneActive1 += new EventHandler(zone1Active);
+            alarmCollection.ZoneActive2 += new EventHandler(zone2Active);
+            alarmCollection.ZoneActive3 += new EventHandler(zone3Active);
+            alarmCollection.ZoneActive4 += new EventHandler(zone4Active);
+
         }
         private void dealWithDataReady(object sender, EventArgs e)
         {
@@ -89,7 +97,37 @@ namespace WheelChairHMI
         {
             dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
         }
+        #region Alarmevents
+        private void emergencyAlarm(object sender, EventArgs e)
+        {
 
+        }
+        private void speedAlarm(object sender, EventArgs e)
+        {
+
+        }
+        private void zone1Active(object sender, EventArgs e)
+        {
+
+        }
+        private void zone2Active(object sender, EventArgs e)
+        {
+
+        }
+        private void zone3Active(object sender, EventArgs e)
+        {
+
+        }
+        private void zone4Active(object sender, EventArgs e)
+        {
+
+        }
+        private void batteryAlarm(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
     }
-    
+
 }

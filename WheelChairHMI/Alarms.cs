@@ -55,7 +55,6 @@ namespace WheelChairHMI
                         alarmCheck[0] = true;
                         Emergency(this, new EventArgs()); //Making event for Emergency
                     }
-
             }
             if(alarmCheck[1]==false) //Checking if the speed bool is false
             {
