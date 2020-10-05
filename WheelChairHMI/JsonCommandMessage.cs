@@ -16,27 +16,32 @@ namespace WheelChairHMI
         /// </summary>
         public JsonCommandMessage()
         {
-            Prop1 = 0;
-            Prop2 = 0;
-            Prop3 = 0;
+            Speed = 0;
+            Drive = false;
+            Left = false;
+            Right = false;
         }
         /// <summary>
         /// Constructor for initialising the properties
         /// </summary>
-        /// <param name="prop1">The first property</param>
-        /// <param name="prop2">The second property</param>
-        /// <param name="prop3">the third property</param>
-        public JsonCommandMessage(int prop1, int prop2, int prop3)
+        /// <param name="speed">The speed value to the wheelchair</param>
+        /// <param name="drive">The flag to command the wheelchair to drive</param>
+        /// <param name="left">The flag to command the wheelchair to go left</param>
+        /// <param name="right">The flag to command the wheelchair to go left</param>
+        public JsonCommandMessage(int speed, bool drive, bool left,bool right)
         {
-            Prop1 = prop1;
-            Prop2 = prop2;
-            Prop3 = prop3;
+            Speed = speed;
+            Drive = drive;
+            Left = left;
+            Right = right;
         }
 
-        public int Prop1 { get; set; }
+        public int Speed { get; set; }
 
-        public int Prop2 { get; set; }
+        public bool Drive { get; set; }
 
-        public int Prop3 { get; set; }
+        public bool Left { get; set; }
+
+        public bool Right { get; set; }
     }
 }

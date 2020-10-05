@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
+
+            
+
             this.tabMain = new System.Windows.Forms.TabPage();
             this.dataGridViewAlarms = new System.Windows.Forms.DataGridView();
             this.lblAlarms = new System.Windows.Forms.Label();
@@ -50,6 +53,9 @@
             this.btnDisable = new System.Windows.Forms.Button();
             this.btnEnableDriving = new System.Windows.Forms.Button();
             this.tabSetitngs = new System.Windows.Forms.TabPage();
+            this.btnSerialConnect = new System.Windows.Forms.Button();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
+            this.lblSerialPort = new System.Windows.Forms.Label();
             this.tabData = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUpdateData = new System.Windows.Forms.Button();
@@ -67,6 +73,8 @@
             this.tabData.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
+
             this.SuspendLayout();
             // 
 
@@ -311,9 +319,11 @@
             this.btnEnableDriving.Text = "Enable driving";
             this.btnEnableDriving.UseVisualStyleBackColor = true;
             // 
-
             // tabSetitngs
             // 
+            this.tabSetitngs.Controls.Add(this.btnSerialConnect);
+            this.tabSetitngs.Controls.Add(this.cboComPort);
+            this.tabSetitngs.Controls.Add(this.lblSerialPort);
             this.tabSetitngs.Location = new System.Drawing.Point(4, 22);
             this.tabSetitngs.Name = "tabSetitngs";
             this.tabSetitngs.Padding = new System.Windows.Forms.Padding(3);
@@ -321,6 +331,32 @@
             this.tabSetitngs.TabIndex = 1;
             this.tabSetitngs.Text = "Settings";
             this.tabSetitngs.UseVisualStyleBackColor = true;
+            // 
+            // btnSerialConnect
+            // 
+            this.btnSerialConnect.Location = new System.Drawing.Point(22, 59);
+            this.btnSerialConnect.Name = "btnSerialConnect";
+            this.btnSerialConnect.Size = new System.Drawing.Size(121, 23);
+            this.btnSerialConnect.TabIndex = 2;
+            this.btnSerialConnect.Text = "Connect";
+            this.btnSerialConnect.UseVisualStyleBackColor = true;
+            // 
+            // cboComPort
+            // 
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(22, 32);
+            this.cboComPort.Name = "cboComPort";
+            this.cboComPort.Size = new System.Drawing.Size(121, 21);
+            this.cboComPort.TabIndex = 1;
+            // 
+            // lblSerialPort
+            // 
+            this.lblSerialPort.AutoSize = true;
+            this.lblSerialPort.Location = new System.Drawing.Point(19, 16);
+            this.lblSerialPort.Name = "lblSerialPort";
+            this.lblSerialPort.Size = new System.Drawing.Size(82, 13);
+            this.lblSerialPort.TabIndex = 0;
+            this.lblSerialPort.Text = "Serial Port---------";
             // 
             // tabData
             // 
@@ -472,12 +508,22 @@
             this.tabData.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBwd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxFwd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).EndInit();
+
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button btnSerialConnect;
+        private System.Windows.Forms.ComboBox cboComPort;
+        private System.Windows.Forms.Label lblSerialPort;
         private System.Windows.Forms.TabPage tabMain;
         private System.Windows.Forms.TabPage tabSetitngs;
         private System.Windows.Forms.GroupBox groupBoxControls;

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+
+using System.Windows.Input;
+
 using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -21,11 +24,15 @@ namespace WheelChairHMI
         Communication communication;
         JsonDataMessage message;
         Alarm alarmCollection;
+        readonly Communication communication;
+        readonly ButtonHandling btnHandling;
         public Form1()
         {
             InitializeComponent();
-            //communication = new Communication("COM3",115200);
-            //communication.dataIsReady += new EventHandler(dealWithDataReady);
+            communication = new Communication(cboComPort,btnSerialConnect,115200);
+            communication.dataIsReady += new EventHandler(dealWithDataReady);
+            btnHandling = new ButtonHandling(communication);
+            KeyPreview = true;//Needs to be true to detect button presses
             message = new JsonDataMessage();
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
@@ -34,12 +41,17 @@ namespace WheelChairHMI
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
-            JsonDataMessage toBeChecked = communication.latestMessage;
+            JsonDataMessage toBeChecked = communication.LatestMessage;
 
             alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass
 
             
 
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            btnHandling.ProcessBtnClick(keyData);
+            return true;
         }
         private void UpdateAlarms(object o, EventArgs e)
         {
