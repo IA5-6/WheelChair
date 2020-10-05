@@ -114,14 +114,17 @@
             this.chartSpeed.ChartAreas.Add(chartArea1);
             legend1.Enabled = false;
             legend1.Name = "Legend1";
+
             this.chartSpeed.Legends.Add(legend1);
             this.chartSpeed.Location = new System.Drawing.Point(489, 28);
             this.chartSpeed.Name = "chartSpeed";
             this.chartSpeed.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
+
             this.chartSpeed.Series.Add(series1);
             this.chartSpeed.Size = new System.Drawing.Size(584, 290);
             this.chartSpeed.TabIndex = 6;
@@ -135,6 +138,7 @@
             this.chartBattery.ChartAreas.Add(chartArea2);
             legend2.Enabled = false;
             legend2.Name = "Legend1";
+
             this.chartBattery.Legends.Add(legend2);
             this.chartBattery.Location = new System.Drawing.Point(489, 342);
             this.chartBattery.Name = "chartBattery";
@@ -143,6 +147,7 @@
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
+
             this.chartBattery.Series.Add(series2);
             this.chartBattery.Size = new System.Drawing.Size(581, 290);
             this.chartBattery.TabIndex = 3;
@@ -152,10 +157,12 @@
             // 
             this.chartZone.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
+
             this.chartZone.ChartAreas.Add(chartArea3);
             this.chartZone.Location = new System.Drawing.Point(194, 342);
             this.chartZone.Name = "chartZone";
             this.chartZone.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
+
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
             series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,6 +186,7 @@
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
             series3.YValuesPerPoint = 2;
             series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+
             this.chartZone.Series.Add(series3);
             this.chartZone.Size = new System.Drawing.Size(312, 294);
             this.chartZone.TabIndex = 4;
@@ -188,9 +196,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.label1.Location = new System.Drawing.Point(710, 3);
+
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 24);
+            this.label1.Size = new System.Drawing.Size(183, 29);
             this.label1.TabIndex = 5;
             this.label1.Text = "Speed indicator";
             // 
@@ -198,9 +208,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.label2.Location = new System.Drawing.Point(704, 315);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 24);
+            this.label2.Size = new System.Drawing.Size(194, 29);
             this.label2.TabIndex = 6;
             this.label2.Text = "Battery remaning";
             // 
@@ -208,9 +219,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.label3.Location = new System.Drawing.Point(285, 315);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 24);
+            this.label3.Size = new System.Drawing.Size(166, 29);
             this.label3.TabIndex = 7;
             this.label3.Text = "Zone indicator";
             // 
@@ -220,11 +232,18 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+
             this.tabControl1.Location = new System.Drawing.Point(-3, -3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1091, 678);
-            this.tabControl1.TabIndex = 12;
+            this.tabControl1.Location = new System.Drawing.Point(3, -1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1441, 817);
+
+            
             // 
             // tabPage1
             // 
@@ -237,13 +256,15 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.chartSpeed);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1083, 652);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main menu";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // groupBoxControls
             // 
@@ -357,8 +378,10 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
+
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1083, 652);
             this.tabPage2.TabIndex = 1;
@@ -367,15 +390,19 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
+
             this.tabPage3.Size = new System.Drawing.Size(1083, 652);
+
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Manual control";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.dgvActiceAlarms);
             this.tabPage4.Controls.Add(this.label5);
@@ -383,6 +410,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1083, 652);
+
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Alarms";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -433,6 +461,7 @@
             // 
             // btnUpdateAlarms
             // 
+
             this.btnUpdateAlarms.Location = new System.Drawing.Point(5, 109);
             this.btnUpdateAlarms.Name = "btnUpdateAlarms";
             this.btnUpdateAlarms.Size = new System.Drawing.Size(188, 23);
@@ -443,11 +472,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(1084, 671);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wheelchair HMI";

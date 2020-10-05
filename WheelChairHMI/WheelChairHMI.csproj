@@ -57,6 +57,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DB_Handling.cs" />
+    <Compile Include="Alarms.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

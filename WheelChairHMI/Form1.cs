@@ -15,10 +15,11 @@ namespace WheelChairHMI
     public partial class Form1 : Form
     {
 
-        DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
-                "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
-        Communication communication;
+        //DB_Handling dB = new DB_Handling("Data Source=localhost\\" +
+             //   "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
+      //  Communication communication;
         JsonDataMessage message;
+        Alarm alarmCollection;
         public Form1()
         {
             InitializeComponent();
@@ -27,12 +28,15 @@ namespace WheelChairHMI
             message = new JsonDataMessage();
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
+            alarmCollection= new Alarm();
         }
 
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.latestMessage;
+            alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass
+
             
         }
         private void UpdateAlarms(object o, EventArgs e)
@@ -63,7 +67,13 @@ namespace WheelChairHMI
         private void btnUpdateAlarms_Click(object sender, EventArgs e)
         {
             dB.UpdateAlarm();
+
+
+             
+
         }
+
+        
     }
     
 }
