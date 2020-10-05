@@ -9,23 +9,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Reflection;
+
+using System.Windows.Input;
+
 using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace WheelChairHMI
 {
     public partial class Form1 : Form
     {
 
+
         DB_Handling dB = new DB_Handling("Data Source=localhost\\" + "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
-        Communication communication;
         JsonDataMessage message;
         Alarm alarmCollection;
+        readonly Communication communication;
+        readonly ButtonHandling btnHandling;
         public Form1()
         {
             InitializeComponent();
-            communication = new Communication("COM3",115200);
+            communication = new Communication(cboComPort,btnSerialConnect,115200);
             communication.dataIsReady += new EventHandler(dealWithDataReady);
+            btnHandling = new ButtonHandling(communication);
+            KeyPreview = true;//Needs to be true to detect button presses
             message = new JsonDataMessage();
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
@@ -41,13 +49,18 @@ namespace WheelChairHMI
             
 
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            btnHandling.ProcessBtnClick(keyData);
+            return true;
+        }
         private void UpdateAlarms(object o, EventArgs e)
         {
             dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
             
             
         }
-
+        
         private void btnAckAlarms_Click(object sender, EventArgs e)
         {
             dB.AckAlarms();
