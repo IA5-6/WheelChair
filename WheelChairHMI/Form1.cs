@@ -24,8 +24,8 @@ namespace WheelChairHMI
         public Form1()
         {
             InitializeComponent();
-            communication = new Communication("COM3",115200);
-            communication.dataIsReady += new EventHandler(dealWithDataReady);
+            //communication = new Communication("COM3",115200);
+            //communication.dataIsReady += new EventHandler(dealWithDataReady);
             message = new JsonDataMessage();
             dB.UpdateAlarms += new EventHandler(UpdateAlarms);
             dB.UpdateAlarm();
