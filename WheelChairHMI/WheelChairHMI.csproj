@@ -101,5 +101,8 @@
   <ItemGroup>
     <None Include="Properties\Left_v1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Alarm.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

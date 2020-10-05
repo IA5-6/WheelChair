@@ -18,9 +18,14 @@ namespace WheelChairHMI
     {
         #region Properties
 
-        public string DBConfig { get; set; }
+        private string DBConfig { get; set; }
         public DateTime Timestamp { get; set; }
         //public List<string> AlarmHistory { get; set; } = new List<string>();
+        /// <summary>
+        /// Event for updating active and historical alarms.
+        /// </summary>
+        public event EventHandler UpdateAlarms;
+        
         #endregion
 
         #region Constructors
@@ -34,20 +39,16 @@ namespace WheelChairHMI
         //Test funksjon
         public void CnnDB()
         {
-            string data, sqlQuery;
+            string sqlQuery;
             try
             {
                 SqlConnection cnn = new SqlConnection(DBConfig);
-                data = "Test";
                 sqlQuery = String.Concat(@"INSERT INTO Timestamp
-                        VALUES ('",Timestamp,"','",data,"')");
+                        VALUES ('",Timestamp,"'");
                 cnn.Open();
                 SqlCommand command = new SqlCommand(sqlQuery, cnn);
                 command.ExecuteNonQuery();
                 cnn.Close();
-
-
-
             }
             catch (Exception exe)
             {
@@ -72,11 +73,11 @@ namespace WheelChairHMI
         {
             try
             {
-                SqlConnection cnn = DBcon();
-                cnn.Open();
-                SqlCommand command = new SqlCommand(Q, cnn);
-                command.ExecuteNonQuery();
-                cnn.Close();
+                SqlConnection sqlConnection = new SqlConnection(DBConfig);
+                SqlCommand sql = new SqlCommand(Q, sqlConnection);
+                sqlConnection.Open();
+                sql.ExecuteNonQuery();
+                sqlConnection.Close();
             }
             catch (Exception e)
             {
@@ -96,11 +97,28 @@ namespace WheelChairHMI
         /// <param name="dataval">The value of data to be stored.</param>
         public void LogData(double dataval, int dataId)
         {
-            string Query;
             Timestamp = DateTime.Now;
-            Query = String.Concat(@"INSERT INTO Timestamp VALUES ('", Timestamp, "')"
-                + "INSERT INTO Data Values('", Timestamp, "','", dataId, "','",dataval,"')");
-            CnnSendCommand(Query);
+            try
+            {
+                using (SqlConnection con = DBcon())
+                {
+                    using (SqlCommand cmd = new SqlCommand("Insert into Timestamps values (@c1)" +
+                        "Insert into Data values(@c2,@c3,@c4)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@c1", Timestamp);
+                        cmd.Parameters.AddWithValue("@c2", Timestamp);
+                        cmd.Parameters.AddWithValue("@c3", dataId);
+                        cmd.Parameters.AddWithValue("c4", dataval);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+                MessageBox.Show(exe.Message);
+            }
+            
         }
         //Method for clearing a table
         /// <summary>
@@ -131,37 +149,53 @@ namespace WheelChairHMI
         /// <param name="Alarmvalue"></param>
         public void LogAlarms(int AlarmId, double Alarmvalue)
         {
-            string Query;
             Timestamp = DateTime.Now;
-            Query = String.Concat(@"insert into Timestamp values ('",Timestamp,"')" +
-                "insert into Alarms values ('", Timestamp ,"','",AlarmId,"','",Alarmvalue,"')");
-            CnnSendCommand(Query);
+            try
+            {
+                using (SqlConnection con = DBcon())
+                {
+                    using (SqlCommand cmd = new SqlCommand("insert into Timestamp values(@col)" +
+                    "insert into Alarms values(@col1,@col2,@col3,@col4)",con))
+                    {
+                        cmd.Parameters.AddWithValue("@col", Timestamp);
+                        cmd.Parameters.AddWithValue("@col1", Timestamp);
+                        cmd.Parameters.AddWithValue("@col2", AlarmId);
+                        cmd.Parameters.AddWithValue("@col3", Alarmvalue);
+                        cmd.Parameters.AddWithValue("@col4", 0);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+                MessageBox.Show(exe.Message);
+            }
         }
         //Method for obtaining data table of alarms.
         /// <summary>
-        /// 
+        /// There are two view in the database right now.
+        /// To get alarm history write ViewAlarmHistory.
+        /// To get active alarms write ViewActiveAlarms.
+        /// The method will return a DataTable with either alarmhistory or active alarms.
         /// </summary>
         /// <returns></returns>
-        public DataTable ViewAlarmHistory()
+        public DataTable ViewsFromDatabase(string View)
         {
             DataTable dt = new DataTable();
             try
             {
-                string procedure;
-                procedure = "AlarmHistoryView";
-                SqlConnection con = DBcon();
-                SqlCommand cmd = new SqlCommand(procedure, con)
+                SqlConnection sqlConnection = DBcon();
+                SqlCommand cmd = new SqlCommand(View, sqlConnection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                con.Open();
+                sqlConnection.Open();
                 dt.Load(cmd.ExecuteReader());
-                con.Close();
-
+                sqlConnection.Close();
             }
             catch (Exception exe)
             {
-
                 MessageBox.Show(exe.Message);
             }
             return dt;
@@ -207,6 +241,31 @@ namespace WheelChairHMI
                 MessageBox.Show(exe.Message);
             }
             return vs;
+        }
+        /// <summary>
+        /// Metode for å kjøre UpdateAlarms eventet.
+        /// </summary>
+        public void UpdateAlarm()
+        {
+            UpdateAlarms(this, new EventArgs());
+        }
+        public void AckAlarms()
+        {
+            try
+            {
+                using (SqlConnection con = DBcon())
+                {
+                    using (SqlCommand cmd = new SqlCommand("AckAllAlarms",con))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+                MessageBox.Show(exe.Message);
+            }
         }
         #endregion
 
