@@ -41,10 +41,7 @@ namespace WheelChairHMI
         {
             ///Here all the logging and alarm checking can be done
             JsonDataMessage toBeChecked = communication.LatestMessage;
-
             alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass
-
-            
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -55,8 +52,6 @@ namespace WheelChairHMI
         private void UpdateAlarms(object o, EventArgs e)
         {
             dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
-            
-            
         }
 
         private void btnAckAlarms_Click(object sender, EventArgs e)
@@ -88,12 +83,7 @@ namespace WheelChairHMI
         private void btnUpdateAlarms_Click(object sender, EventArgs e)
         {
             dB.UpdateAlarm();
-
-
-             
-
         }
-
         //Event for updatning historical data to the data grid view manually
         private void btnUpdateData_Click(object sender, EventArgs e)
         {
