@@ -69,17 +69,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
             this.SuspendLayout();
             // 
+
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabMain);
             this.tabControl1.Controls.Add(this.tabSetitngs);
             this.tabControl1.Controls.Add(this.tabData);
+
             this.tabControl1.Location = new System.Drawing.Point(-3, -3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1091, 678);
-            this.tabControl1.TabIndex = 12;
+            this.tabControl1.Location = new System.Drawing.Point(3, -1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1441, 817);
+
+            
             // 
+
             // tabMain
             // 
             this.tabMain.Controls.Add(this.dataGridViewAlarms);
@@ -153,6 +162,7 @@
             this.zone2.Size = new System.Drawing.Size(90, 70);
             this.zone2.TabIndex = 11;
             this.zone2.UseVisualStyleBackColor = false;
+
             // 
             // groupBoxControls
             // 
@@ -228,6 +238,7 @@
             this.btnEnableDriving.Text = "Enable driving";
             this.btnEnableDriving.UseVisualStyleBackColor = true;
             // 
+
             // tabSetitngs
             // 
             this.tabSetitngs.Location = new System.Drawing.Point(4, 22);
@@ -327,6 +338,7 @@
             this.picBoxFwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picBoxFwd.TabIndex = 16;
             this.picBoxFwd.TabStop = false;
+
             // 
             // pictureBox1
             // 
@@ -363,11 +375,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(1084, 671);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wheelchair HMI";
