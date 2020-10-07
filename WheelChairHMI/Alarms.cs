@@ -30,8 +30,10 @@ namespace WheelChairHMI
             alarmListValue = new List<string>(); //Should be 
             alarmListName = new List<string>(); //Should be 
         }
-
-        private void alarmBoolList() //Sets all boolindex to false
+        /// <summary>
+        /// Sets all the elements of the alarmcheck array to false.
+        /// </summary>
+        public void alarmBoolList() //Sets all boolindex to false
         {
             for (int i = 0; i < alarmCheck.Length; i++)
             {
