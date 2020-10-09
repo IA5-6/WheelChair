@@ -22,7 +22,7 @@ namespace WheelChairHMI
     {
 
 
-        DB_Handling dB = new DB_Handling("Data Source=localhost\\" + "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
+        //DB_Handling dB = new DB_Handling("Data Source=localhost\\" + "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
         JsonDataMessage message;
         Alarm alarmCollection;
         readonly Communication communication;
@@ -35,14 +35,14 @@ namespace WheelChairHMI
             btnHandling = new ButtonHandling(communication);
             KeyPreview = true;//Needs to be true to detect button presses
             message = new JsonDataMessage();
-            dB.UpdateAlarms += new EventHandler(UpdateAlarms);
-            dB.UpdateAlarm();
+            //dB.UpdateAlarms += new EventHandler(UpdateAlarms);
+            //dB.UpdateAlarm();
             alarmCollection= new Alarm();
         }
         private void dealWithDataReady(object sender, EventArgs e)
         {
             ///Here all the logging and alarm checking can be done
-            JsonDataMessage toBeChecked = communication.latestMessage;
+            JsonDataMessage toBeChecked = communication.LatestMessage;
 
             alarmCollection.AlarmCheck(message); //Sending the values from arduino to alarmclass
 
@@ -56,15 +56,15 @@ namespace WheelChairHMI
         }
         private void UpdateAlarms(object o, EventArgs e)
         {
-            dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
+            //dataGridViewAlarms.DataSource = dB.ViewsFromDatabase("viewallalarmsorderd");
             
             
         }
         
         private void btnAckAlarms_Click(object sender, EventArgs e)
         {
-            dB.AckAlarms();
-            dB.UpdateAlarm();
+            //dB.AckAlarms();
+            //dB.UpdateAlarm();
         }
         /// <summary>
         /// Test button for logging alarms
@@ -74,7 +74,7 @@ namespace WheelChairHMI
         private void btnTest_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-            dB.LogAlarms(1, rand.NextDouble() * 100);
+            //dB.LogAlarms(1, rand.NextDouble() * 100);
         }
         /// <summary>
         /// Test button for logging data.
@@ -84,22 +84,18 @@ namespace WheelChairHMI
         private void button1_Click(object sender, EventArgs e)
         {
             Random rand = new Random();
-            dB.LogData(rand.Next(1, 3), rand.NextDouble() * 100);
+            //dB.LogData(rand.Next(1, 3), rand.NextDouble() * 100);
         }
         //Event for updating the alarms manually.
         private void btnUpdateAlarms_Click(object sender, EventArgs e)
         {
-            dB.UpdateAlarm();
-
-
-             
-
+            //dB.UpdateAlarm();
         }
 
         //Event for updatning historical data to the data grid view manually
         private void btnUpdateData_Click(object sender, EventArgs e)
         {
-            dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
+            //dgvData.DataSource = dB.ViewsFromDatabase("ViewDataHistory");
         }
 
     }
