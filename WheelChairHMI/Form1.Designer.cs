@@ -28,246 +28,235 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint16 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint17 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(1D, "1,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint18 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint19 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint20 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint21 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint22 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint23 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint24 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint25 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint26 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint27 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint28 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint29 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint30 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,0");
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cboComPort = new System.Windows.Forms.ComboBox();
+
+            
+
+            this.tabMain = new System.Windows.Forms.TabPage();
+            this.lblFwd = new System.Windows.Forms.Label();
+            this.zone1 = new System.Windows.Forms.Button();
+            this.zone4 = new System.Windows.Forms.Button();
+            this.zone3 = new System.Windows.Forms.Button();
+            this.zone2 = new System.Windows.Forms.Button();
+            this.groupBoxControls = new System.Windows.Forms.GroupBox();
+            this.btnUpdateAlarms = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.btnAckAlarms = new System.Windows.Forms.Button();
+            this.btnDisable = new System.Windows.Forms.Button();
+            this.btnEnableDriving = new System.Windows.Forms.Button();
+            this.tabSetitngs = new System.Windows.Forms.TabPage();
             this.btnSerialConnect = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            this.cboComPort = new System.Windows.Forms.ComboBox();
+            this.lblSerialPort = new System.Windows.Forms.Label();
+            this.tabData = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnUpdateData = new System.Windows.Forms.Button();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.picBoxBwd = new System.Windows.Forms.PictureBox();
+            this.picBoxRight = new System.Windows.Forms.PictureBox();
+            this.picBoxLeft = new System.Windows.Forms.PictureBox();
+            this.picBoxFwd = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblAlarms = new System.Windows.Forms.Label();
+            this.dataGridViewAlarms = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabMain.SuspendLayout();
+            this.groupBoxControls.SuspendLayout();
+            this.tabData.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBwd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxFwd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
+
             this.SuspendLayout();
             // 
-            // chart1
-            // 
-            this.chart1.BackColor = System.Drawing.Color.Transparent;
-            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(443, 28);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(630, 290);
-            this.chart1.TabIndex = 6;
-            this.chart1.Text = "chart1";
-            // 
-            // chart2
-            // 
-            this.chart2.BackColor = System.Drawing.Color.Transparent;
-            this.chart2.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
-            legend4.Enabled = false;
-            legend4.Name = "Legend1";
-            this.chart2.Legends.Add(legend4);
-            this.chart2.Location = new System.Drawing.Point(440, 338);
-            this.chart2.Name = "chart2";
-            this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
-            this.chart2.Size = new System.Drawing.Size(630, 290);
-            this.chart2.TabIndex = 3;
-            this.chart2.Text = "chart2";
-            // 
-            // chart3
-            // 
-            this.chart3.BackColor = System.Drawing.Color.Transparent;
-            chartArea6.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea6);
-            this.chart3.Location = new System.Drawing.Point(6, 338);
-            this.chart3.Name = "chart3";
-            this.chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Radar;
-            series6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series6.LabelForeColor = System.Drawing.Color.Transparent;
-            series6.Name = "Series1";
-            series6.Points.Add(dataPoint16);
-            series6.Points.Add(dataPoint17);
-            series6.Points.Add(dataPoint18);
-            series6.Points.Add(dataPoint19);
-            series6.Points.Add(dataPoint20);
-            series6.Points.Add(dataPoint21);
-            series6.Points.Add(dataPoint22);
-            series6.Points.Add(dataPoint23);
-            series6.Points.Add(dataPoint24);
-            series6.Points.Add(dataPoint25);
-            series6.Points.Add(dataPoint26);
-            series6.Points.Add(dataPoint27);
-            series6.Points.Add(dataPoint28);
-            series6.Points.Add(dataPoint29);
-            series6.Points.Add(dataPoint30);
-            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series6.YValuesPerPoint = 2;
-            series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.chart3.Series.Add(series6);
-            this.chart3.Size = new System.Drawing.Size(312, 294);
-            this.chart3.TabIndex = 4;
-            this.chart3.Text = "chart3";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(474, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 24);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Speed indicator";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(474, 311);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 24);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Battery remaning";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 311);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 24);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Zone indicator";
-            // 
+
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(2, -1);
+            this.tabControl1.Controls.Add(this.tabMain);
+            this.tabControl1.Controls.Add(this.tabSetitngs);
+            this.tabControl1.Controls.Add(this.tabData);
+
+            this.tabControl1.Location = new System.Drawing.Point(-3, -3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1081, 664);
-            this.tabControl1.TabIndex = 12;
+            this.tabControl1.Size = new System.Drawing.Size(1091, 678);
+            this.tabControl1.Location = new System.Drawing.Point(3, -1);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1441, 817);
+
+            
             // 
-            // tabPage1
+
+            // tabMain
             // 
-            this.tabPage1.Controls.Add(this.chart3);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.chart2);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1073, 638);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Main menu";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabMain.Controls.Add(this.dataGridViewAlarms);
+            this.tabMain.Controls.Add(this.lblAlarms);
+            this.tabMain.Controls.Add(this.picBoxBwd);
+            this.tabMain.Controls.Add(this.picBoxRight);
+            this.tabMain.Controls.Add(this.picBoxLeft);
+            this.tabMain.Controls.Add(this.picBoxFwd);
+            this.tabMain.Controls.Add(this.lblFwd);
+            this.tabMain.Controls.Add(this.zone1);
+            this.tabMain.Controls.Add(this.zone4);
+            this.tabMain.Controls.Add(this.zone3);
+            this.tabMain.Controls.Add(this.zone2);
+            this.tabMain.Controls.Add(this.groupBoxControls);
+            this.tabMain.Location = new System.Drawing.Point(4, 22);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMain.Size = new System.Drawing.Size(1083, 652);
+            this.tabMain.TabIndex = 0;
+            this.tabMain.Text = "Main menu";
+            this.tabMain.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // lblFwd
             // 
-            this.tabPage2.Controls.Add(this.btnSerialConnect);
-            this.tabPage2.Controls.Add(this.cboComPort);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1073, 638);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.lblFwd.AutoSize = true;
+            this.lblFwd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFwd.Location = new System.Drawing.Point(299, 14);
+            this.lblFwd.Name = "lblFwd";
+            this.lblFwd.Size = new System.Drawing.Size(97, 25);
+            this.lblFwd.TabIndex = 15;
+            this.lblFwd.Text = "Forward";
             // 
-            // tabPage3
+            // zone1
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1073, 638);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Manual control";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.zone1.BackColor = System.Drawing.Color.White;
+            this.zone1.Enabled = false;
+            this.zone1.FlatAppearance.BorderSize = 0;
+            this.zone1.Location = new System.Drawing.Point(297, 115);
+            this.zone1.Name = "zone1";
+            this.zone1.Size = new System.Drawing.Size(100, 100);
+            this.zone1.TabIndex = 14;
+            this.zone1.UseVisualStyleBackColor = false;
             // 
-            // tabPage4
+            // zone4
             // 
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1073, 638);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Alarms";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.zone4.BackColor = System.Drawing.Color.White;
+            this.zone4.Enabled = false;
+            this.zone4.Location = new System.Drawing.Point(227, 289);
+            this.zone4.Name = "zone4";
+            this.zone4.Size = new System.Drawing.Size(240, 30);
+            this.zone4.TabIndex = 13;
+            this.zone4.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // zone3
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1062, 631);
-            this.dataGridView1.TabIndex = 0;
+            this.zone3.BackColor = System.Drawing.Color.White;
+            this.zone3.Enabled = false;
+            this.zone3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.zone3.Location = new System.Drawing.Point(377, 39);
+            this.zone3.Name = "zone3";
+            this.zone3.Size = new System.Drawing.Size(90, 70);
+            this.zone3.TabIndex = 12;
+            this.zone3.UseVisualStyleBackColor = false;
             // 
-            // label4
+            // zone2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Serial Port---------";
+            this.zone2.BackColor = System.Drawing.Color.White;
+            this.zone2.Enabled = false;
+            this.zone2.Location = new System.Drawing.Point(227, 39);
+            this.zone2.Name = "zone2";
+            this.zone2.Size = new System.Drawing.Size(90, 70);
+            this.zone2.TabIndex = 11;
+            this.zone2.UseVisualStyleBackColor = false;
+
             // 
-            // cboComPort
+            // groupBoxControls
             // 
-            this.cboComPort.FormattingEnabled = true;
-            this.cboComPort.Location = new System.Drawing.Point(22, 32);
-            this.cboComPort.Name = "cboComPort";
-            this.cboComPort.Size = new System.Drawing.Size(121, 21);
-            this.cboComPort.TabIndex = 1;
+            this.groupBoxControls.Controls.Add(this.btnUpdateAlarms);
+            this.groupBoxControls.Controls.Add(this.button1);
+            this.groupBoxControls.Controls.Add(this.btnTest);
+            this.groupBoxControls.Controls.Add(this.pictureBox1);
+            this.groupBoxControls.Controls.Add(this.btnAckAlarms);
+            this.groupBoxControls.Controls.Add(this.btnDisable);
+            this.groupBoxControls.Controls.Add(this.btnEnableDriving);
+            this.groupBoxControls.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxControls.Name = "groupBoxControls";
+            this.groupBoxControls.Size = new System.Drawing.Size(200, 640);
+            this.groupBoxControls.TabIndex = 10;
+            this.groupBoxControls.TabStop = false;
+            this.groupBoxControls.Text = "Controls";
+            // 
+            // btnUpdateAlarms
+            // 
+            this.btnUpdateAlarms.Location = new System.Drawing.Point(5, 109);
+            this.btnUpdateAlarms.Name = "btnUpdateAlarms";
+            this.btnUpdateAlarms.Size = new System.Drawing.Size(188, 23);
+            this.btnUpdateAlarms.TabIndex = 7;
+            this.btnUpdateAlarms.Text = "Update Alarms";
+            this.btnUpdateAlarms.UseVisualStyleBackColor = true;
+            this.btnUpdateAlarms.Click += new System.EventHandler(this.btnUpdateAlarms_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(58, 386);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Test Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(58, 357);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 5;
+            this.btnTest.Text = "Test alarm";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // btnAckAlarms
+            // 
+            this.btnAckAlarms.Location = new System.Drawing.Point(5, 80);
+            this.btnAckAlarms.Name = "btnAckAlarms";
+            this.btnAckAlarms.Size = new System.Drawing.Size(188, 23);
+            this.btnAckAlarms.TabIndex = 3;
+            this.btnAckAlarms.Text = "Acknowledge all alarms";
+            this.btnAckAlarms.UseVisualStyleBackColor = true;
+            this.btnAckAlarms.Click += new System.EventHandler(this.btnAckAlarms_Click);
+            // 
+            // btnDisable
+            // 
+            this.btnDisable.Location = new System.Drawing.Point(6, 51);
+            this.btnDisable.Name = "btnDisable";
+            this.btnDisable.Size = new System.Drawing.Size(188, 23);
+            this.btnDisable.TabIndex = 1;
+            this.btnDisable.Text = "Disable driving";
+            this.btnDisable.UseVisualStyleBackColor = true;
+            // 
+            // btnEnableDriving
+            // 
+            this.btnEnableDriving.Location = new System.Drawing.Point(6, 22);
+            this.btnEnableDriving.Name = "btnEnableDriving";
+            this.btnEnableDriving.Size = new System.Drawing.Size(188, 23);
+            this.btnEnableDriving.TabIndex = 0;
+            this.btnEnableDriving.Text = "Enable driving";
+            this.btnEnableDriving.UseVisualStyleBackColor = true;
+            // 
+            // tabSetitngs
+            // 
+            this.tabSetitngs.Controls.Add(this.btnSerialConnect);
+            this.tabSetitngs.Controls.Add(this.cboComPort);
+            this.tabSetitngs.Controls.Add(this.lblSerialPort);
+            this.tabSetitngs.Location = new System.Drawing.Point(4, 22);
+            this.tabSetitngs.Name = "tabSetitngs";
+            this.tabSetitngs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSetitngs.Size = new System.Drawing.Size(1083, 652);
+            this.tabSetitngs.TabIndex = 1;
+            this.tabSetitngs.Text = "Settings";
+            this.tabSetitngs.UseVisualStyleBackColor = true;
             // 
             // btnSerialConnect
             // 
@@ -278,47 +267,214 @@
             this.btnSerialConnect.Text = "Connect";
             this.btnSerialConnect.UseVisualStyleBackColor = true;
             // 
+            // cboComPort
+            // 
+            this.cboComPort.FormattingEnabled = true;
+            this.cboComPort.Location = new System.Drawing.Point(22, 32);
+            this.cboComPort.Name = "cboComPort";
+            this.cboComPort.Size = new System.Drawing.Size(121, 21);
+            this.cboComPort.TabIndex = 1;
+            // 
+            // lblSerialPort
+            // 
+            this.lblSerialPort.AutoSize = true;
+            this.lblSerialPort.Location = new System.Drawing.Point(19, 16);
+            this.lblSerialPort.Name = "lblSerialPort";
+            this.lblSerialPort.Size = new System.Drawing.Size(82, 13);
+            this.lblSerialPort.TabIndex = 0;
+            this.lblSerialPort.Text = "Serial Port---------";
+            // 
+            // tabData
+            // 
+            this.tabData.Controls.Add(this.groupBox1);
+            this.tabData.Controls.Add(this.dgvData);
+            this.tabData.Controls.Add(this.label7);
+            this.tabData.Location = new System.Drawing.Point(4, 22);
+            this.tabData.Name = "tabData";
+            this.tabData.Size = new System.Drawing.Size(1083, 652);
+            this.tabData.TabIndex = 4;
+            this.tabData.Text = "Data";
+            this.tabData.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnUpdateData);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 640);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Data controller";
+            // 
+            // btnUpdateData
+            // 
+            this.btnUpdateData.Location = new System.Drawing.Point(6, 19);
+            this.btnUpdateData.Name = "btnUpdateData";
+            this.btnUpdateData.Size = new System.Drawing.Size(188, 23);
+            this.btnUpdateData.TabIndex = 0;
+            this.btnUpdateData.Text = "Update data";
+            this.btnUpdateData.UseVisualStyleBackColor = true;
+            this.btnUpdateData.Click += new System.EventHandler(this.btnUpdateData_Click);
+            // 
+            // dgvData
+            // 
+            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Location = new System.Drawing.Point(212, 27);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.Size = new System.Drawing.Size(867, 628);
+            this.dgvData.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(212, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(168, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "All the data stored in the database";
+            // 
+            // picBoxBwd
+            // 
+            this.picBoxBwd.Image = global::WheelChairHMI.Properties.Resources.ArrowBackward;
+            this.picBoxBwd.Location = new System.Drawing.Point(325, 221);
+            this.picBoxBwd.Name = "picBoxBwd";
+            this.picBoxBwd.Size = new System.Drawing.Size(45, 62);
+            this.picBoxBwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxBwd.TabIndex = 19;
+            this.picBoxBwd.TabStop = false;
+            // 
+            // picBoxRight
+            // 
+            this.picBoxRight.Image = global::WheelChairHMI.Properties.Resources.ArrowRight;
+            this.picBoxRight.Location = new System.Drawing.Point(405, 115);
+            this.picBoxRight.Name = "picBoxRight";
+            this.picBoxRight.Size = new System.Drawing.Size(62, 45);
+            this.picBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxRight.TabIndex = 18;
+            this.picBoxRight.TabStop = false;
+            // 
+            // picBoxLeft
+            // 
+            this.picBoxLeft.Image = global::WheelChairHMI.Properties.Resources.ArrowLeft;
+            this.picBoxLeft.Location = new System.Drawing.Point(227, 115);
+            this.picBoxLeft.Name = "picBoxLeft";
+            this.picBoxLeft.Size = new System.Drawing.Size(62, 45);
+            this.picBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxLeft.TabIndex = 17;
+            this.picBoxLeft.TabStop = false;
+            // 
+            // picBoxFwd
+            // 
+            this.picBoxFwd.Image = global::WheelChairHMI.Properties.Resources.ArrowForward;
+            this.picBoxFwd.Location = new System.Drawing.Point(324, 39);
+            this.picBoxFwd.Name = "picBoxFwd";
+            this.picBoxFwd.Size = new System.Drawing.Size(46, 63);
+            this.picBoxFwd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBoxFwd.TabIndex = 16;
+            this.picBoxFwd.TabStop = false;
+
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WheelChairHMI.Properties.Resources.Alarm;
+            this.pictureBox1.Location = new System.Drawing.Point(32, 205);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(115, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblAlarms
+            // 
+            this.lblAlarms.AutoSize = true;
+            this.lblAlarms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlarms.Location = new System.Drawing.Point(213, 337);
+            this.lblAlarms.Name = "lblAlarms";
+            this.lblAlarms.Size = new System.Drawing.Size(153, 24);
+            this.lblAlarms.TabIndex = 20;
+            this.lblAlarms.Text = "Alarm overview";
+            // 
+            // dataGridViewAlarms
+            // 
+            this.dataGridViewAlarms.AllowUserToAddRows = false;
+            this.dataGridViewAlarms.AllowUserToDeleteRows = false;
+            this.dataGridViewAlarms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAlarms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlarms.Location = new System.Drawing.Point(212, 364);
+            this.dataGridViewAlarms.Name = "dataGridViewAlarms";
+            this.dataGridViewAlarms.ReadOnly = true;
+            this.dataGridViewAlarms.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dataGridViewAlarms.Size = new System.Drawing.Size(871, 288);
+            this.dataGridViewAlarms.TabIndex = 21;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 661);
+
+            this.ClientSize = new System.Drawing.Size(1084, 671);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wheelchair HMI";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+
+            
+
+            this.tabMain.ResumeLayout(false);
+            this.tabMain.PerformLayout();
+            this.groupBoxControls.ResumeLayout(false);
+            this.groupBoxControls.PerformLayout();
+            this.tabData.ResumeLayout(false);
+            this.tabData.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBwd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxFwd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).EndInit();
+
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSerialConnect;
         private System.Windows.Forms.ComboBox cboComPort;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSerialPort;
+        private System.Windows.Forms.TabPage tabMain;
+        private System.Windows.Forms.TabPage tabSetitngs;
+        private System.Windows.Forms.GroupBox groupBoxControls;
+        private System.Windows.Forms.Button btnEnableDriving;
+        private System.Windows.Forms.Button btnDisable;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnAckAlarms;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpdateAlarms;
+        private System.Windows.Forms.TabPage tabData;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnUpdateData;
+        private System.Windows.Forms.Button zone1;
+        private System.Windows.Forms.Button zone4;
+        private System.Windows.Forms.Button zone3;
+        private System.Windows.Forms.Button zone2;
+        private System.Windows.Forms.Label lblFwd;
+        private System.Windows.Forms.PictureBox picBoxFwd;
+        private System.Windows.Forms.PictureBox picBoxLeft;
+        private System.Windows.Forms.PictureBox picBoxBwd;
+        private System.Windows.Forms.PictureBox picBoxRight;
+        private System.Windows.Forms.DataGridView dataGridViewAlarms;
+        private System.Windows.Forms.Label lblAlarms;
+
     }
 }
 
