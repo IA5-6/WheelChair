@@ -12,7 +12,7 @@ Files used in the early testing. Kept for history.
 Overview of the external packages used in the project.
 ### Newtonsoft.Json 
 Package for serializing object properties to JSON strings, and deserialize from serial port to object.  
-### ArduinoJSON 
+### [ArduinoJSON](https://arduinojson.org/) 
 Package for serializing and deserializing of json strings from the serial port of the arduino.  
   
 
