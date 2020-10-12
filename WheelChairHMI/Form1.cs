@@ -17,7 +17,6 @@ namespace WheelChairHMI
 {
     public partial class Form1 : Form
     {
-        JsonDataMessage message;
         Alarm alarmCollection;
         readonly Communication communication;
         readonly ButtonHandling btnHandling;
@@ -31,10 +30,9 @@ namespace WheelChairHMI
             communication.dataIsReady += new EventHandler(dealWithDataReady);
             btnHandling = new ButtonHandling(communication);
             KeyPreview = true;//Needs to be true to detect button presses
-            message = new JsonDataMessage();
             dataHandling.UpdateAlarms += new EventHandler(UpdateAlarms);//Event that updates alarm
             dataHandling.RunUpdateAlarm();
-            dataHandling.UpdateData += new EventHandler(UpdateData);//Event that updayes alarm
+            dataHandling.UpdateData += new EventHandler(UpdateData);//Event that updates alarm
             dataHandling.RunUpdateData();
             alarmCollection= new Alarm();
             InitEvents();
