@@ -23,6 +23,7 @@ namespace WheelChairHMI
         readonly ButtonHandling btnHandling;
         DataHandling dataHandling = new DataHandling(true, "Data Source=localhost\\" + 
             "SQLEXPRESS01;Initial Catalog=Wheelchair;Integrated Security=True");
+        private bool DriveEnabled;
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +42,8 @@ namespace WheelChairHMI
             //tmrUpdateAlarms.Start();
             //tmrUpdateData.Start();
             tmrAlarmActive.Start();
+            DriveEnabled = false;
+            
         }
         private void dealWithDataReady(object sender, EventArgs e)
         {
@@ -60,8 +63,11 @@ namespace WheelChairHMI
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            btnHandling.ProcessBtnClick(keyData);
-            Arrowhandling(keyData);
+            if (DriveEnabled)
+            {
+                btnHandling.ProcessBtnClick(keyData);
+                Arrowhandling(keyData);
+            }
             return true;
         }
 
@@ -79,6 +85,15 @@ namespace WheelChairHMI
             alarmCollection.alarmBoolList();
             dataHandling.AckAlarms();
             dataHandling.RunUpdateAlarm();
+        }
+        private void btnEnableDriving_Click(object sender, EventArgs e)
+        {
+            DriveEnabled = true;
+        }
+
+        private void btnDisable_Click(object sender, EventArgs e)
+        {
+            DriveEnabled = false;
         }
         #endregion
 
@@ -271,7 +286,7 @@ namespace WheelChairHMI
             UpdateAlarmPic();
         }
 
-        #endregion 
+        #endregion
     }
 
 

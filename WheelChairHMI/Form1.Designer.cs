@@ -49,7 +49,6 @@
             this.picBoxAlarm = new System.Windows.Forms.PictureBox();
             this.btnAckAlarms = new System.Windows.Forms.Button();
             this.btnDisable = new System.Windows.Forms.Button();
-            this.btnEnableDriving = new System.Windows.Forms.Button();
             this.tabSetitngs = new System.Windows.Forms.TabPage();
             this.btnSerialConnect = new System.Windows.Forms.Button();
             this.cboComPort = new System.Windows.Forms.ComboBox();
@@ -63,6 +62,7 @@
             this.tmrUpdateAlarms = new System.Windows.Forms.Timer(this.components);
             this.tmrUpdateData = new System.Windows.Forms.Timer(this.components);
             this.tmrAlarmActive = new System.Windows.Forms.Timer(this.components);
+            this.btnEnableDriving = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
@@ -329,16 +329,7 @@
             this.btnDisable.TabIndex = 1;
             this.btnDisable.Text = "Disable driving";
             this.btnDisable.UseVisualStyleBackColor = true;
-            // 
-            // btnEnableDriving
-            // 
-            this.btnEnableDriving.Location = new System.Drawing.Point(4, 18);
-            this.btnEnableDriving.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEnableDriving.Name = "btnEnableDriving";
-            this.btnEnableDriving.Size = new System.Drawing.Size(141, 19);
-            this.btnEnableDriving.TabIndex = 0;
-            this.btnEnableDriving.Text = "Enable driving";
-            this.btnEnableDriving.UseVisualStyleBackColor = true;
+            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
             // 
             // tabSetitngs
             // 
@@ -458,6 +449,17 @@
             // 
             this.tmrAlarmActive.Tick += new System.EventHandler(this.tmrAlarmActive_Tick);
             // 
+            // btnEnableDriving
+            // 
+            this.btnEnableDriving.Location = new System.Drawing.Point(4, 18);
+            this.btnEnableDriving.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEnableDriving.Name = "btnEnableDriving";
+            this.btnEnableDriving.Size = new System.Drawing.Size(141, 19);
+            this.btnEnableDriving.TabIndex = 0;
+            this.btnEnableDriving.Text = "Enable driving";
+            this.btnEnableDriving.UseVisualStyleBackColor = true;
+            this.btnEnableDriving.Click += new System.EventHandler(this.btnEnableDriving_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,7 +499,6 @@
         private System.Windows.Forms.TabPage tabMain;
         private System.Windows.Forms.TabPage tabSetitngs;
         private System.Windows.Forms.GroupBox groupBoxControls;
-        private System.Windows.Forms.Button btnEnableDriving;
         private System.Windows.Forms.Button btnDisable;
         private System.Windows.Forms.PictureBox picBoxAlarm;
         private System.Windows.Forms.Button btnAckAlarms;
@@ -524,6 +525,7 @@
         private System.Windows.Forms.Timer tmrUpdateAlarms;
         private System.Windows.Forms.Timer tmrUpdateData;
         private System.Windows.Forms.Timer tmrAlarmActive;
+        private System.Windows.Forms.Button btnEnableDriving;
     }
 }
 
