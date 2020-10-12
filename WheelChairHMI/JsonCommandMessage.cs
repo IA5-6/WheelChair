@@ -43,5 +43,7 @@ namespace WheelChairHMI
         public bool Left { get; set; }
 
         public bool Right { get; set; }
+
+        public bool Auto { get; set; }
     }
 }

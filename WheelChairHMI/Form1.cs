@@ -50,7 +50,7 @@ namespace WheelChairHMI
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //btnHandling.ProcessBtnClick(keyData);
+            btnHandling.ProcessBtnClick(keyData);
             Arrowhandling(keyData);
             return true;
         }

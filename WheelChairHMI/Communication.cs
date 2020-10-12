@@ -139,6 +139,7 @@ namespace WheelChairHMI
         #region DriveMethods
         public void DriveForward()
         {
+            cmdMsg.Auto = false;
             cmdMsg.Left = false;
             cmdMsg.Right = false;
             if (Speed < 0)
@@ -158,6 +159,7 @@ namespace WheelChairHMI
         }
         public void DriveBack()
         {
+            cmdMsg.Auto = false;
             cmdMsg.Left = false;
             cmdMsg.Right = false;
             if (Speed >0)
@@ -173,6 +175,7 @@ namespace WheelChairHMI
         }
         public void TurnLeft()
         {
+            cmdMsg.Auto = false;
             cmdMsg.Drive = true;
             cmdMsg.Speed = turningSpeed;
             cmdMsg.Left = true;
@@ -180,9 +183,18 @@ namespace WheelChairHMI
         }
         public void TurnRight()
         {
+            cmdMsg.Auto = false;
             cmdMsg.Drive = true;
             cmdMsg.Speed = turningSpeed;
             cmdMsg.Right = true;
+            cmdMsg.Left = false;
+        }
+        public void SelfDriving()
+        {
+            cmdMsg.Drive = !cmdMsg.Auto;
+            cmdMsg.Auto = !cmdMsg.Auto;//If this is called while auto is high, set it low, and vice versa
+            cmdMsg.Speed = turningSpeed;
+            cmdMsg.Right = false;
             cmdMsg.Left = false;
         }
         #endregion

@@ -39,6 +39,9 @@ namespace WheelChairHMI
                 case Keys.Down:
                     Com.DriveBack();
                     break;
+                case Keys.A:
+                    Com.SelfDriving();
+                    break;
                 default:
                     break;
             }
