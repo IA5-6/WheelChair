@@ -2,11 +2,11 @@
 Electric wheelchair control project by University of Southeastern Norway, campus Porsgrunn.
 ## Files and Folders
 Overview of some of the non C# & .net files and folders. 
-### [Arduino](https://github.com/IA5-6/WheelChair/tree/kommunikasjon/Arduino)
+### [Arduino](https://github.com/IA5-6/WheelChair/tree/master/Arduino)
 Folder containing the arduino files.
-#### [MergedProgram](https://github.com/IA5-6/WheelChair/tree/kommunikasjon/Arduino/MergedProgram/merged)
+#### [MergedProgram](https://github.com/IA5-6/WheelChair/tree/master/Arduino/MergedProgram/merged)
 The full arduino program for the wheelchair.
-#### [Wheelchair test](https://github.com/IA5-6/WheelChair/tree/kommunikasjon/Arduino/WheelchairTest)
+#### [Wheelchair test](https://github.com/IA5-6/WheelChair/tree/master/Arduino/WheelchairTest)
 Files used in the early testing. Kept for history. :cowboy_hat_face:
 ## Packages
 Overview of the external packages used in the project.
