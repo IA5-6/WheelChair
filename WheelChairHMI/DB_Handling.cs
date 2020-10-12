@@ -251,7 +251,7 @@ namespace WheelChairHMI
         /// <summary>
         /// Method for activating the UpdateAlarms event.
         /// </summary>
-        public void UpdateAlarm()
+        public void RunUpdateAlarm()
         {
             UpdateAlarms(this, new EventArgs());
         }

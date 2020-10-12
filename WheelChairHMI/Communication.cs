@@ -73,7 +73,10 @@ namespace WheelChairHMI
             cboParent = cbo;
             Cbo = cbo;
             Cbo.Items.AddRange(ports);
-            Cbo.SelectedIndex=0;
+            if (Cbo.Items.Count > 0)
+            {
+                Cbo.SelectedIndex = 0;
+            }
             form = new notConnectedForm(this);
             form.FormClosed += new FormClosedEventHandler(closedForm);
             cmdMsg = new JsonCommandMessage();
