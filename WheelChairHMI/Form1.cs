@@ -57,8 +57,6 @@ namespace WheelChairHMI
             {
                 MessageBox.Show(exe.Message);
             }
-            
-
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -185,10 +183,7 @@ namespace WheelChairHMI
                     break;
             }
         }
-        private void tmrLogData_Tick(object sender, EventArgs e)
-        {
-            dataHandling.LogDataBit = true;
-        }
+        
         
         /// <summary>
         /// Method that checks wether
@@ -257,6 +252,12 @@ namespace WheelChairHMI
         }
         #endregion
 
+        #region Timers
+
+        private void tmrLogData_Tick(object sender, EventArgs e)
+        {
+            dataHandling.LogDataBit = true;
+        }
         private void tmrUpdateAlarms_Tick(object sender, EventArgs e)
         {
             dataHandling.RunUpdateAlarm();
@@ -269,6 +270,8 @@ namespace WheelChairHMI
         {
             UpdateAlarmPic();
         }
+
+        #endregion 
     }
 
 
