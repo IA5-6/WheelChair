@@ -71,21 +71,22 @@ void loop() {
   // put your main code here, to run repeatedly:
  checkLidar();
   if (Serial.available() > 0) {
-    //delay(2000);
     // read the incoming string
     incomingString = Serial.readStringUntil('\n');
     decodeMsg();
   }
   decideDriveMode();
   codeMsg();
-  delay(10);
+  //delay(100);
 }
 void decideDriveMode(){
   if(_auto){
     selfDriving();
+    
   }
   else{
     manualDriving();
+    
   }
 }
 void readFloorSensors(){
@@ -181,7 +182,7 @@ void codeMsg(){
     outDoc["Zone2Tripped"]=q2stat;
     outDoc["Zone3Tripped"]=q3stat;
     outDoc["Zone4Tripped"]=q4stat;
-    outDoc["BatteryLevel"]=map(analogRead(voltagePin),0,894,0,25);//Maps from raw value to voltage
+    outDoc["BatteryLevel"]=analogRead(voltagePin);
     serializeJson(outDoc,Serial);
     Serial.println();//adds a line break
 }
