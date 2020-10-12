@@ -176,7 +176,7 @@ void codeMsg(){
 
         public int BatteryLevel { get; set; }*/
     
-    outDoc["EmergencyStop"]="false";//Not yet implemented
+    outDoc["EmergencyStop"]=false;//Not yet implemented
     outDoc["Speed"]=velocity;
     outDoc["Zone1Tripped"]=q1stat;
     outDoc["Zone2Tripped"]=q2stat;

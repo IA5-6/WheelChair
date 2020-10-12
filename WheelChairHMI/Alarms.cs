@@ -100,9 +100,9 @@ namespace WheelChairHMI
             }
             if (alarmCheck[6] == false)//Checking if the battery low bool is false
             {
-                if (Convert.ToInt64(alarmListValue[5])< 100)//MUST CHANGE VALUE TO MORE SPESIFIC!!!!!!!!!!!!!!
+                if (Convert.ToInt64(alarmListValue[6])< 100)//MUST CHANGE VALUE TO MORE SPESIFIC!!!!!!!!!!!!!!
                 {
-                    alarmCheck[5] = (true);
+                    alarmCheck[6] = (true);
                     Battery(this, new EventArgs()); //Making event for low battery
                 }
             }

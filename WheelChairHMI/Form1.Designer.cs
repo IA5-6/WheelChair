@@ -60,6 +60,9 @@
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tmrLogData = new System.Windows.Forms.Timer(this.components);
+            this.tmrUpdateAlarms = new System.Windows.Forms.Timer(this.components);
+            this.tmrUpdateData = new System.Windows.Forms.Timer(this.components);
+            this.tmrAlarmActive = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
@@ -441,6 +444,20 @@
             this.tmrLogData.Interval = 15000;
             this.tmrLogData.Tick += new System.EventHandler(this.tmrLogData_Tick);
             // 
+            // tmrUpdateAlarms
+            // 
+            this.tmrUpdateAlarms.Interval = 1000;
+            this.tmrUpdateAlarms.Tick += new System.EventHandler(this.tmrUpdateAlarms_Tick);
+            // 
+            // tmrUpdateData
+            // 
+            this.tmrUpdateData.Interval = 1000;
+            this.tmrUpdateData.Tick += new System.EventHandler(this.tmrUpdateData_Tick);
+            // 
+            // tmrAlarmActive
+            // 
+            this.tmrAlarmActive.Tick += new System.EventHandler(this.tmrAlarmActive_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -504,6 +521,9 @@
         private System.Windows.Forms.DataGridView dataGridViewAlarms;
         private System.Windows.Forms.Label lblAlarms;
         private System.Windows.Forms.Timer tmrLogData;
+        private System.Windows.Forms.Timer tmrUpdateAlarms;
+        private System.Windows.Forms.Timer tmrUpdateData;
+        private System.Windows.Forms.Timer tmrAlarmActive;
     }
 }
 

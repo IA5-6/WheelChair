@@ -126,13 +126,14 @@ namespace WheelChairHMI
                     Speed = 0;
                 }
                 dataReady = true;
-                dataIsReady(this, new EventArgs());
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"dataRecieved error");
+                MessageBox.Show(ex.Message, "dataRecieved error");
                 dataReady = false;
             }
+            dataIsReady(this, new EventArgs());
         }
         #endregion
         #region Methods

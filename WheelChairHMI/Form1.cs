@@ -38,14 +38,26 @@ namespace WheelChairHMI
             alarmCollection= new Alarm();
             InitEvents();
             tmrLogData.Start();
+            //tmrUpdateAlarms.Start();
+            //tmrUpdateData.Start();
+            tmrAlarmActive.Start();
         }
         private void dealWithDataReady(object sender, EventArgs e)
         {
-            ///Here all the logging and alarm checking can be done
-            JsonDataMessage toBeChecked = communication.LatestMessage;
-            alarmCollection.AlarmCheck(toBeChecked); //Sending the values from arduino to alarmclass
-            dataHandling.SendData(toBeChecked);
-            ZoneHandling(toBeChecked);
+            try
+            {
+                ///Here all the logging and alarm checking can be done
+                JsonDataMessage toBeChecked = communication.LatestMessage;
+                alarmCollection.AlarmCheck(toBeChecked); //Sending the values from arduino to alarmclass
+                dataHandling.SendData(toBeChecked);
+                ZoneHandling(toBeChecked);
+                //UpdateAlarmPic();
+            }
+            catch (Exception exe)
+            {
+                MessageBox.Show(exe.Message);
+            }
+            
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -69,9 +81,7 @@ namespace WheelChairHMI
             alarmCollection.alarmBoolList();
             dataHandling.AckAlarms();
             dataHandling.RunUpdateAlarm();
-            picBoxAlarm.Visible = false;
         }
-
         #endregion
 
         #region TestRegion
@@ -108,44 +118,37 @@ namespace WheelChairHMI
         //Event for updatning historical data to the data grid view manually
         private void btnUpdateData_Click(object sender, EventArgs e)
         {
-            dgvData.DataSource = dataHandling.ViewsFromDatabase("ViewDataHistory");
+            dataHandling.RunUpdateData();
         }
         #endregion
 
         #region Alarmevents
         private void emergencyAlarm(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(1, Convert.ToDouble(communication.LatestMessage.EmergencyStop));
+            dataHandling.LogAlarms(1,1);
         }
         private void speedAlarm(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(2, communication.LatestMessage.Speed);
+            dataHandling.LogAlarms(2,communication.LatestMessage.Speed);
         }
         private void zone1Active(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(3, Convert.ToDouble(communication.LatestMessage.Zone1Tripped));
+            dataHandling.LogAlarms(3,1);
         }
         private void zone2Active(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(4, Convert.ToDouble(communication.LatestMessage.Zone2Tripped));
+            dataHandling.LogAlarms(4,1);
         }
         private void zone3Active(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(5, Convert.ToDouble(communication.LatestMessage.Zone3Tripped));
+            dataHandling.LogAlarms(5,1);
         }
         private void zone4Active(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
-            dataHandling.LogAlarms(6, Convert.ToDouble(communication.LatestMessage.Zone4Tripped));
+            dataHandling.LogAlarms(6,1);
         }
         private void batteryAlarm(object sender, EventArgs e)
         {
-            picBoxAlarm.Visible = true;
             dataHandling.LogAlarms(7,communication.LatestMessage.BatteryLevel);
         }
         #endregion
@@ -227,6 +230,7 @@ namespace WheelChairHMI
             }
             
         }
+        
         #endregion
 
         #region Methods
@@ -240,8 +244,31 @@ namespace WheelChairHMI
             alarmCollection.ZoneActive3 += new EventHandler(zone3Active);
             alarmCollection.ZoneActive4 += new EventHandler(zone4Active);
         }
-
+        public void UpdateAlarmPic()
+        {
+            if (dataHandling.CountActiveAlarms() > 0)
+            {
+                picBoxAlarm.Visible = true;
+            }
+            else
+            {
+                picBoxAlarm.Visible = false;
+            }
+        }
         #endregion
+
+        private void tmrUpdateAlarms_Tick(object sender, EventArgs e)
+        {
+            dataHandling.RunUpdateAlarm();
+        }
+        private void tmrUpdateData_Tick(object sender, EventArgs e)
+        {
+            dataHandling.RunUpdateData();
+        }
+        private void tmrAlarmActive_Tick(object sender, EventArgs e)
+        {
+            UpdateAlarmPic();
+        }
     }
 
 
