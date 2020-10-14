@@ -37,11 +37,8 @@ namespace WheelChairHMI
             alarmCollection= new Alarm();
             InitEvents();
             tmrLogData.Start();
-            //tmrUpdateAlarms.Start();
-            //tmrUpdateData.Start();
-            tmrAlarmActive.Start();
+            UpdateAlarmPic();
             DriveEnabled = false;
-            
         }
         private void dealWithDataReady(object sender, EventArgs e)
         {
@@ -50,9 +47,9 @@ namespace WheelChairHMI
                 ///Here all the logging and alarm checking can be done
                 JsonDataMessage toBeChecked = communication.LatestMessage;
                 alarmCollection.AlarmCheck(toBeChecked); //Sending the values from arduino to alarmclass
+                alarmCollection.AlarmCheck(picBoxAlarm);
                 dataHandling.SendData(toBeChecked);
                 ZoneHandling(toBeChecked);
-                //UpdateAlarmPic();
             }
             catch (Exception exe)
             {
@@ -68,7 +65,6 @@ namespace WheelChairHMI
             }
             return true;
         }
-
         #region Buttonevents
         private void UpdateAlarms(object o, EventArgs e)
         {
@@ -82,6 +78,7 @@ namespace WheelChairHMI
         {
             alarmCollection.alarmBoolList();
             dataHandling.AckAlarms();
+            UpdateAlarmPic();
             dataHandling.RunUpdateAlarm();
         }
         private void btnEnableDriving_Click(object sender, EventArgs e)
@@ -105,6 +102,8 @@ namespace WheelChairHMI
         {
             Random rand = new Random();
             dataHandling.LogAlarms(1, rand.NextDouble() * 100);
+            UpdateAlarmPic();
+            dataHandling.RunUpdateAlarm();
 
         }
         /// <summary>

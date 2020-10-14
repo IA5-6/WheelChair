@@ -20,7 +20,8 @@ namespace WheelChairHMI
         public event EventHandler ZoneActive4; //Event for active Zone4
         public event EventHandler Battery;    //Event for low battery
         bool[] alarmCheck;
-       
+        private int ActiveAlarms { get; set; }
+
         List<string> alarmListValue; //Creating list for values
         List<string> alarmListName; //Creating list for names
 
@@ -41,10 +42,21 @@ namespace WheelChairHMI
             }
        
         }
-
+        public void AlarmCheck(PictureBox box)
+        {
+            if (ActiveAlarms>0)
+            {
+                box.Visible = true;
+            }
+            else
+            {
+                box.Visible = false;
+            }
+        }
 
         public void AlarmCheck (JsonDataMessage arduinoValues)//Checking the alarmvalues and makes event if true
         {
+            ActiveAlarms = 0;
             foreach (PropertyInfo prop in arduinoValues.GetType().GetProperties()) //Getting values from arudino
             {
                 alarmListValue.Add(prop.GetValue(arduinoValues).ToString()); //adding values to list of the last updated value from arduino
@@ -104,6 +116,13 @@ namespace WheelChairHMI
                 {
                     alarmCheck[6] = (true);
                     Battery(this, new EventArgs()); //Making event for low battery
+                }
+            }
+            for (int i = 0; i < alarmCheck.Length; i++)
+            {
+                if (alarmCheck[i])
+                {
+                    ActiveAlarms += 1;
                 }
             }
 
