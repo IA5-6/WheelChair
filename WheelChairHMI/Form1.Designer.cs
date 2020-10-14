@@ -49,6 +49,7 @@
             this.picBoxAlarm = new System.Windows.Forms.PictureBox();
             this.btnAckAlarms = new System.Windows.Forms.Button();
             this.btnDisable = new System.Windows.Forms.Button();
+            this.btnEnableDriving = new System.Windows.Forms.Button();
             this.tabSetitngs = new System.Windows.Forms.TabPage();
             this.btnSerialConnect = new System.Windows.Forms.Button();
             this.cboComPort = new System.Windows.Forms.ComboBox();
@@ -62,7 +63,6 @@
             this.tmrUpdateAlarms = new System.Windows.Forms.Timer(this.components);
             this.tmrUpdateData = new System.Windows.Forms.Timer(this.components);
             this.tmrAlarmActive = new System.Windows.Forms.Timer(this.components);
-            this.btnEnableDriving = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
@@ -331,6 +331,17 @@
             this.btnDisable.UseVisualStyleBackColor = true;
             this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
             // 
+            // btnEnableDriving
+            // 
+            this.btnEnableDriving.Location = new System.Drawing.Point(4, 18);
+            this.btnEnableDriving.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEnableDriving.Name = "btnEnableDriving";
+            this.btnEnableDriving.Size = new System.Drawing.Size(141, 19);
+            this.btnEnableDriving.TabIndex = 0;
+            this.btnEnableDriving.Text = "Enable driving";
+            this.btnEnableDriving.UseVisualStyleBackColor = true;
+            this.btnEnableDriving.Click += new System.EventHandler(this.btnEnableDriving_Click);
+            // 
             // tabSetitngs
             // 
             this.tabSetitngs.Controls.Add(this.btnSerialConnect);
@@ -432,7 +443,7 @@
             // 
             // tmrLogData
             // 
-            this.tmrLogData.Interval = 15000;
+            this.tmrLogData.Interval = 5000;
             this.tmrLogData.Tick += new System.EventHandler(this.tmrLogData_Tick);
             // 
             // tmrUpdateAlarms
@@ -448,17 +459,6 @@
             // tmrAlarmActive
             // 
             this.tmrAlarmActive.Tick += new System.EventHandler(this.tmrAlarmActive_Tick);
-            // 
-            // btnEnableDriving
-            // 
-            this.btnEnableDriving.Location = new System.Drawing.Point(4, 18);
-            this.btnEnableDriving.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEnableDriving.Name = "btnEnableDriving";
-            this.btnEnableDriving.Size = new System.Drawing.Size(141, 19);
-            this.btnEnableDriving.TabIndex = 0;
-            this.btnEnableDriving.Text = "Enable driving";
-            this.btnEnableDriving.UseVisualStyleBackColor = true;
-            this.btnEnableDriving.Click += new System.EventHandler(this.btnEnableDriving_Click);
             // 
             // Form1
             // 
