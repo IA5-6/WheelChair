@@ -6,7 +6,7 @@ Overview of some of the non C# & .net files and folders.
 Folder containing the arduino files.
 #### [MergedProgram](https://github.com/IA5-6/WheelChair/tree/master/Arduino/MergedProgram/merged)
 The full arduino program for the wheelchair.
-### [WheelChairHMI](https://github.com/IA5-6/WheelChair/tree/master/WheelChairHMI)
+## [WheelChairHMI](https://github.com/IA5-6/WheelChair/tree/master/WheelChairHMI)
 The full C# program solution
 ## Packages
 Overview of the external packages used in the project.
