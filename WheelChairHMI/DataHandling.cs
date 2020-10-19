@@ -31,7 +31,7 @@ namespace WheelChairHMI
                 LogData(1, json.BatteryLevel);
                 LogData(3, json.Speed);
                 LogDataBit = false;
-                RunUpdateData();
+                //RunUpdateData();
             }
         }
         public void RunUpdateData()

@@ -87,7 +87,7 @@ namespace WheelChairHMI
                 MessageBox.Show(exe.Message);
             }
         }
-
+        
         #endregion
 
         #region Public methods
@@ -262,6 +262,31 @@ namespace WheelChairHMI
         public void AckAlarms()
         {
             SendCommand("AckAllAlarms");
+        }
+        public int CountActiveAlarms()
+        {
+            int count = 0;
+            try
+            {
+                using (SqlConnection con = DBcon())
+                {
+                    using (SqlCommand cmd = new SqlCommand("select COUNT(*) From Alarms where Acked = 0", con))
+                    {
+                        con.Open();
+                        SqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            count = dataReader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return count;
         }
         #endregion
 

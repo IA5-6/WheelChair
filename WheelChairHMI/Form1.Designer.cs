@@ -60,6 +60,9 @@
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tmrLogData = new System.Windows.Forms.Timer(this.components);
+            this.tmrUpdateAlarms = new System.Windows.Forms.Timer(this.components);
+            this.tmrUpdateData = new System.Windows.Forms.Timer(this.components);
+            this.tmrAlarmActive = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlarms)).BeginInit();
@@ -326,6 +329,7 @@
             this.btnDisable.TabIndex = 1;
             this.btnDisable.Text = "Disable driving";
             this.btnDisable.UseVisualStyleBackColor = true;
+            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
             // 
             // btnEnableDriving
             // 
@@ -336,6 +340,7 @@
             this.btnEnableDriving.TabIndex = 0;
             this.btnEnableDriving.Text = "Enable driving";
             this.btnEnableDriving.UseVisualStyleBackColor = true;
+            this.btnEnableDriving.Click += new System.EventHandler(this.btnEnableDriving_Click);
             // 
             // tabSetitngs
             // 
@@ -438,8 +443,22 @@
             // 
             // tmrLogData
             // 
-            this.tmrLogData.Interval = 15000;
+            this.tmrLogData.Interval = 5000;
             this.tmrLogData.Tick += new System.EventHandler(this.tmrLogData_Tick);
+            // 
+            // tmrUpdateAlarms
+            // 
+            this.tmrUpdateAlarms.Interval = 1000;
+            this.tmrUpdateAlarms.Tick += new System.EventHandler(this.tmrUpdateAlarms_Tick);
+            // 
+            // tmrUpdateData
+            // 
+            this.tmrUpdateData.Interval = 1000;
+            this.tmrUpdateData.Tick += new System.EventHandler(this.tmrUpdateData_Tick);
+            // 
+            // tmrAlarmActive
+            // 
+            this.tmrAlarmActive.Tick += new System.EventHandler(this.tmrAlarmActive_Tick);
             // 
             // Form1
             // 
@@ -480,7 +499,6 @@
         private System.Windows.Forms.TabPage tabMain;
         private System.Windows.Forms.TabPage tabSetitngs;
         private System.Windows.Forms.GroupBox groupBoxControls;
-        private System.Windows.Forms.Button btnEnableDriving;
         private System.Windows.Forms.Button btnDisable;
         private System.Windows.Forms.PictureBox picBoxAlarm;
         private System.Windows.Forms.Button btnAckAlarms;
@@ -504,6 +522,10 @@
         private System.Windows.Forms.DataGridView dataGridViewAlarms;
         private System.Windows.Forms.Label lblAlarms;
         private System.Windows.Forms.Timer tmrLogData;
+        private System.Windows.Forms.Timer tmrUpdateAlarms;
+        private System.Windows.Forms.Timer tmrUpdateData;
+        private System.Windows.Forms.Timer tmrAlarmActive;
+        private System.Windows.Forms.Button btnEnableDriving;
     }
 }
 
